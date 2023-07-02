@@ -149,7 +149,7 @@
                         </tr>
                         <tr>
                             <th style="">Password</th>
-                            <td><?php echo $guru->password_guru; ?></td>
+                            <td><?php echo $guru->password; ?></td>
                         </tr>
                         <tr>
                             <th style="">Hak Akses</th>

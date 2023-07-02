@@ -2,7 +2,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>DASHBOARD</h2>
+                <h2>DASHBOARD MURID/ORANG TUA</h2>
             </div>
 
             <!-- Widgets -->
@@ -14,7 +14,7 @@
                         </div>
                         <div class="content">
                             <div class="text">DATA MURID</div>
-                            <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?=$data_murid ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -25,10 +25,22 @@
                         </div>
                         <div class="content">
                             <div class="text">DATA HAFALAN</div>
-                            <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?=$setor_hafalan ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>      
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="">
+                <center>
+                <h1>SELAMAT DATANG DI HALAMAN MURID/ORANG TUA</h1>
+            </center>
             </div>
             <!-- #END# Widgets -->
             <!-- CPU Usage 

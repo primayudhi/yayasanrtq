@@ -222,9 +222,10 @@ a {
                         <small class="or text-center">Login</small>
                         <div class="line"></div>
                     </div>
+                    <form action="<?php echo site_url('Login/aksi_login') ?>" method="post">
                     <div class="row px-3">
                         <label class="mb-1"><h6 class="mb-0 text-sm">Username</h6></label>
-                        <input class="mb-4" type="text" name="email" placeholder="Enter a valid Username">
+                        <input class="mb-4" type="text" name="username" placeholder="Enter a valid Username">
                     </div>
                     <div class="row px-3">
                         <label class="mb-1"><h6 class="mb-0 text-sm">Password</h6></label>
@@ -237,10 +238,10 @@ a {
                         </div>
                     </div>
                     <div class="row px-3 ">
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="color: darkgoldenrod; font-family: !important;">
-                          <option selected value="1">Admin</option>
-                          <option value="2">Guru</option>
-                          <option value="3">Murid/OrangTua</option>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="color: darkgoldenrod; font-family: !important;" name="nama_table">
+                          <option selected value="data_admin">Admin</option>
+                          <option value="data_guru">Guru</option>
+                          <option value="data_murid">Murid/OrangTua</option>
                         </select>
                     </div>
                     <br>
@@ -251,7 +252,7 @@ a {
                 </div>
             </div>
         </div>
-       
+       </form>
     </div>
         <div class="bg-blue py-4">
             <div class="row px-3">

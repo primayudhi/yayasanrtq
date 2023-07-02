@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                         </div>
-						<div class="row clearfix">
+                        <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                 <label for="foto">Foto Artikel</label>
                             </div>
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                         </div>
-						<div class="row clearfix">
+                        <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                 <label for="isi">Isi</label>
                             </div>
@@ -68,7 +68,7 @@
                         <div class="row clearfix">
                             <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
                                 <a href="<?php echo site_url('Admin/berita_list') ?>" class="btn btn-danger">Kembali</a>
-								<input type="submit" values="simpan" class="btn btn-primary" onclick="simpan()">
+                                <input type="submit" values="simpan" class="btn btn-primary" onclick="simpan()">
                             </div>
                         </div>
 

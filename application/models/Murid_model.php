@@ -12,6 +12,13 @@ class Murid_model extends CI_Model
         return $this->db->get('data_murid')->result();
     }
 
+      public function data_murid()
+    {
+        $this->db->select('*');
+        $this->db->from('data_murid');
+
+        return $this->db->get()->num_rows();
+    }
   // End Murid 
   
   // Hafalan
@@ -33,6 +40,14 @@ class Murid_model extends CI_Model
     {
         $this->db->where('id_setorhafalan', $id_setorhafalan);
         return $this->db->get('setor_hafalan')->row();
+    }
+
+      public function setor_hafalan()
+    {
+        $this->db->select('*');
+        $this->db->from('setor_hafalan');
+
+        return $this->db->get()->num_rows();
     }
 
     //search murid

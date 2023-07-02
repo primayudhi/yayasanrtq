@@ -38,7 +38,17 @@ class Admin extends CI_Controller {
 			
 		);
 
+		//Menampilkan Data Ke Halaman Dashboard
+		$data['data_guru'] = $this->Admin_model->data_guru();
+		$data['data_murid'] = $this->Admin_model->data_murid();
+		$data['data_berita'] = $this->Admin_model->data_berita();
+		$data['setor_hafalan'] = $this->Admin_model->setor_hafalan();
+
+
 		$this->template->load('template/template_admin', 'admin/dashboard', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 	//End Index
 
@@ -103,7 +113,7 @@ class Admin extends CI_Controller {
 			'nama_ibu' => set_value('nama_ibu'),
 			'nama_ayah' => set_value('nama_ayah'),
 			'username' => set_value('username'),
-			'password_murid' => set_value('password_murid'),
+			'password' => set_value('password'),
 			'aktif' => set_value('aktif'),
 
 
@@ -132,7 +142,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('nama_ibu','Nama Ibu','trim|required');
 		$this->form_validation->set_rules('nama_ayah','Nama Ayah','trim|required');
 		$this->form_validation->set_rules('username','Username','trim|required');
-		$this->form_validation->set_rules('password_murid','Password Murid','trim|required');
+		$this->form_validation->set_rules('password','Password Murid','trim|required');
 		$this->form_validation->set_rules('aktif','Status Aktif','trim|required');
 
 
@@ -157,7 +167,7 @@ class Admin extends CI_Controller {
 				'nama_ibu' => $this->input->post('nama_ibu'),
 				'nama_ayah' => $this->input->post('nama_ayah'),
 				'username' => $this->input->post('username'),
-				'password_murid' => $this->input->post('password_murid'),
+				'password' => $this->input->post('password'),
 				'hak_akses' => 'M',
 				'aktif' => $this->input->post('aktif'),
 			);
@@ -229,7 +239,7 @@ class Admin extends CI_Controller {
 				'nama_ibu' => $data_murid->nama_ibu,
 				'nama_ayah' => $data_murid->nama_ayah,
 				'username' => $data_murid->username,
-				'password_murid' => $data_murid->password_murid,
+				'password' => $data_murid->password,
 				'hak_akses' => $data_murid->hak_akses,
 				'aktif' => $data_murid->aktif,
 				'data_murid' => $data_murid 
@@ -258,7 +268,7 @@ class Admin extends CI_Controller {
 				'nama_ibu' => $this->input->post('nama_ibu'),
 				'nama_ayah' => $this->input->post('nama_ayah'),
 				'username' => $this->input->post('username'),
-				'password_murid' => $this->input->post('password_murid'),
+				'password' => $this->input->post('password'),
 				'hak_akses' => $this->input->post('hak_akses'),
 				'aktif' => $this->input->post('aktif'),
 			);
@@ -321,7 +331,7 @@ class Admin extends CI_Controller {
 			'email' => set_value('email'),
 			'keterangan' => set_value('keterangan'),
 			'username' => set_value('username'),
-			'password_guru' => set_value('password_guru'),
+			'password' => set_value('password'),
 			'hak_akses' => set_value('hak_akses'),
 			'aktif' => set_value('aktif'),
 		);
@@ -350,7 +360,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('email','Email','trim|required');
 		$this->form_validation->set_rules('keterangan','Keterangan','trim|required');
 		$this->form_validation->set_rules('username','Username','trim|required');
-		$this->form_validation->set_rules('password_guru','Password Guru','trim|required');
+		$this->form_validation->set_rules('password','Password Guru','trim|required');
 		$this->form_validation->set_rules('hak_akses','Hak Akses','trim|required');
 		$this->form_validation->set_rules('aktif','Status Aktif','trim|required');
 
@@ -374,7 +384,7 @@ class Admin extends CI_Controller {
 				'email' => $this->input->post('email'),
 				'keterangan' => $this->input->post('keterangan'),
 				'username' => $this->input->post('username'),
-				'password_guru' => $this->input->post('password_guru'),
+				'password' => $this->input->post('password'),
 				'hak_akses' => 'G',
 				'aktif' => $this->input->post('aktif'),
 			);
@@ -458,7 +468,7 @@ class Admin extends CI_Controller {
 				'email' => $data_guru->email,
 				'keterangan' => $data_guru->keterangan,
 				'username' => $data_guru->username,
-				'password_guru'=> $data_guru->password_guru,
+				'password'=> $data_guru->password,
 				'hak_akses' => $data_guru->hak_akses,
 				'aktif' => $data_guru->aktif,
 				'data_guru' => $data_guru
@@ -489,7 +499,7 @@ class Admin extends CI_Controller {
 				'email' => $this->input->post('email'),
 				'keterangan' => $this->input->post('keterangan'),
 				'username' => $this->input->post('username'),
-				'password_guru' => $this->input->post('password_guru'),
+				'password' => $this->input->post('password'),
 				'hak_akses' => $this->input->post('hak_akses'),
 				'aktif' => $this->input->post('aktif'),
 			);
@@ -800,5 +810,22 @@ public function hafalan_list()
 		$this->session->sess_destroy();
 		redirect(site_url('login'));
 	}
+
+	// public function guru_data(){
+	// 	$this->db->load->model('Admin_model');
+	// 	return $this->db->Admin_model->get()->num_rows();
+	// }
+	// public function murid_data(){
+	// 	$this->ci->load->model('Admin_model');
+	// 	return $this->ci->Admin_model->get()->num_rows();
+	// }
+	// public function berita_data(){
+	// 	$this->ci->load->model('Admin_model');
+	// 	return $this->ci->Admin_model->get()->num_rows();
+	// }
+	// public function hafalan_data(){
+	// 	$this->ci->load->model('Admin_model');
+	// 	return $this->ci->Admin_model->get()->num_rows();
+	// }
 
 }

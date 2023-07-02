@@ -34,6 +34,11 @@ class Guru extends CI_Controller {
 			'menu_hafalan' => '',
 		);
 
+		//Menampilkan Data Ke Halaman Dashboard
+		$data['data_guru'] = $this->Guru_model->data_guru();
+		$data['data_murid'] = $this->Guru_model->data_murid();
+		$data['setor_hafalan'] = $this->Guru_model->setor_hafalan();
+
 		$this->template->load('template/template_guru', 'guru/dashboard', $data);
 	}
 	// Guru 
@@ -80,7 +85,7 @@ class Guru extends CI_Controller {
 			'email' => set_value('email'),
 			'keterangan' => set_value('keterangan'),
 			'username' => set_value('username'),
-			'password_guru' => set_value('password_guru'),
+			'password' => set_value('password'),
 			'aktif' => set_value('aktif'),
 		);
 
@@ -103,7 +108,7 @@ class Guru extends CI_Controller {
 		$this->form_validation->set_rules('email','Email','trim|required');
 		$this->form_validation->set_rules('keterangan','Keterangan','trim|required');
 		$this->form_validation->set_rules('username','Username','trim|required');
-		$this->form_validation->set_rules('password_guru','Password Guru','trim|required');
+		$this->form_validation->set_rules('password','Password Guru','trim|required');
 		$this->form_validation->set_rules('hak_akses','Hak Akses','trim|required');
 		$this->form_validation->set_rules('aktif','Status Aktif','trim|required');
 
@@ -133,7 +138,7 @@ class Guru extends CI_Controller {
 				'email' => $data_guru->email,
 				'keterangan' => $data_guru->keterangan,
 				'username' => $data_guru->username,
-				'password_guru' => $data_guru->password_guru,
+				'password' => $data_guru->password,
 				'hak_akses' => $data_guru->hak_akses,
 				'aktif' => $data_guru->aktif,
 				'data_guru' => $data_guru
@@ -164,7 +169,7 @@ class Guru extends CI_Controller {
 				'email' => $this->input->post('email'),
 				'keterangan' => $this->input->post('keterangan'),
 				'username' => $this->input->post('username'),
-				'password_guru' => $this->input->post('password_guru'),
+				'password' => $this->input->post('password'),
 				'hak_akses' => $this->input->post('hak_akses'),
 				'aktif' => $this->input->post('aktif'),
 			);

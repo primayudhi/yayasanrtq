@@ -22,6 +22,13 @@ class Guru_model extends CI_Model
         $this->db->where('id_guru',$id_guru);
         $this->db->update('data_guru', $data);
     }
+    public function data_guru()
+    {
+        $this->db->select('*');
+        $this->db->from('data_guru');
+
+        return $this->db->get()->num_rows();
+    }
 
   // End Guru
 
@@ -29,6 +36,13 @@ class Guru_model extends CI_Model
      public function get_all_murid()
     {
         return $this->db->get('data_murid')->result();
+    }
+    public function data_murid()
+    {
+        $this->db->select('*');
+        $this->db->from('data_murid');
+
+        return $this->db->get()->num_rows();
     }
 
   // End Murid 
@@ -65,6 +79,14 @@ class Guru_model extends CI_Model
     {
         $this->db->where('id_setorhafalan',$id_setorhafalan);
         $this->db->update('setor_hafalan', $data);
+    }
+
+       public function setor_hafalan()
+    {
+        $this->db->select('*');
+        $this->db->from('setor_hafalan');
+
+        return $this->db->get()->num_rows();
     }
 
     //search guru

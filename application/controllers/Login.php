@@ -22,15 +22,53 @@ class Login extends CI_Controller {
 	 public function __construct()
 	 {
 		 parent::__construct();
+
+		 $this->load->model('Login_model');
+
 	 }
 
 	public function index()
 	{
 
 		$this->load->view('login/view_login');
-		
 
+	}
 
-
+	public function aksi_login(){
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$nama_table = $this->input->post('nama_table');
+		$where = array(
+			'username' => $username,
+			'password' => ($password)
+			);
+		$cek = $this->Login_model->cek_login($nama_table,$where)->num_rows();
+		if($cek > 0){
+			// echo $cek;
+ 
+			$data_session = array(
+				'nama' => $username,
+				'status' => "login"
+				);
+ 
+			$this->session->set_userdata($data_session);
+ 
+ 			if($nama_table == "data_admin"){
+				redirect(base_url("Admin"));
+			} else if($nama_table == "data_guru"){
+				redirect(base_url("Guru"));
+			} else {
+				redirect(base_url("Murid"));
+			}
+ 
+		}else{
+			$this->load->view('login/view_login');
+			// echo $cek;
+		}
+	}
+ 
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect(base_url('login'));
 	}
 }

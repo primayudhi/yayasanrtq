@@ -34,6 +34,10 @@ class Murid extends CI_Controller {
 			'menu_hafalan' => '',
 		);
 
+		//Menampilkan Data Ke Halaman Dashboard
+		$data['data_murid'] = $this->Murid_model->data_murid();
+		$data['setor_hafalan'] = $this->Murid_model->setor_hafalan();
+
 		$this->template->load('template/template_murid', 'murid/dashboard', $data);
 	}
 

@@ -136,7 +136,7 @@
                         </tr>
                         <tr>
                             <th style="">Password</th>
-                            <td><?php echo $murid->password_murid; ?></td>
+                            <td><?php echo $murid->password; ?></td>
                         </tr>
                         <tr>
                             <th style="">Hak Akses</th>

@@ -363,7 +363,7 @@
     <!-- Products End -->
 
 
-    <!-- Team Start -->
+    <!-- Team Start 
     <div class="container-fluid py-5" id="team">
         <div class="container">
             <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
@@ -428,7 +428,7 @@
             </div>
         </div>
     </div>
-    <!-- Team End -->
+    Team End -->
 
 
     <!-- Offer Start -->

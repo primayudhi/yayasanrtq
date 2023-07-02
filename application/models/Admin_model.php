@@ -46,7 +46,13 @@ class Admin_model extends CI_Model
         $this->db->update('data_murid', $data);
     }
 
+     public function data_murid()
+    {
+        $this->db->select('*');
+        $this->db->from('data_murid');
 
+        return $this->db->get()->num_rows();
+    }
 
 /*
     public function get_pencarian($pencarian){
@@ -102,6 +108,14 @@ class Admin_model extends CI_Model
          return $this->db->get('data_guru')->result();
     }
     */
+
+    public function data_guru()
+    {
+        $this->db->select('*');
+        $this->db->from('data_guru');
+
+        return $this->db->get()->num_rows();
+    }
     
 
     //berita
@@ -132,6 +146,14 @@ class Admin_model extends CI_Model
         return $this->db->get('data_berita')->row();
     }
 
+      public function data_berita()
+    {
+        $this->db->select('*');
+        $this->db->from('data_berita');
+
+        return $this->db->get()->num_rows();
+    }
+
     // Hafalan
       public function get_all_hafalan()
     {
@@ -160,6 +182,14 @@ class Admin_model extends CI_Model
     {
         $this->db->where('id_setorhafalan',$id_setorhafalan);
         $this->db->update('setor_hafalan', $data);
+    }
+
+     public function setor_hafalan()
+    {
+        $this->db->select('*');
+        $this->db->from('setor_hafalan');
+
+        return $this->db->get()->num_rows();
     }
 
     //search murid
