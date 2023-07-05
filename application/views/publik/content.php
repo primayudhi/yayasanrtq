@@ -369,24 +369,23 @@
                 <h2 class="text-primary font-secondary">BERITA</h2>
                 <h1 class="display-4 text-uppercase">BERITA TERKINI</h1>
             </div>
+            <div class="row g-3">
             <?php foreach($data_berita as $row) { ?>
-              <div class="row g-3">
-                            <div class="col-lg-4">
-                                <div class="d-flex h-100">
-                                    <div class="flex-shrink-0">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                         <img class="img-responsive mt-3" src="<?php echo base_url('/uploads/fotoberita/'.$row->foto); ?>" alt="John" style="width: 100%">
-                                         <br>
-                                        <h5 class="text-uppercase"><?php echo $row->judul; ?></h5>
-                                        <span><?php echo $row->isi; ?></span>
-                                        <h6 class="mb-3"><?php echo $row->tanggal; ?></h6>
-                                    </div>
-                                </div>
-                            </div>
-                <?php } ?>
+                <div class="col-lg-4">
+                    <div class="d-flex h-100">
+                        <div class="flex-shrink-0">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
+                                <img class="img-responsive mt-3" src="<?php echo base_url('/uploads/fotoberita/'.$row->foto); ?>" alt="" style="width: 100%">
+                                <br>
+                            <h5 class="text-uppercase"><?php echo substr($row->judul, 0, 50) . '...'; ?></h5>
+                            <h6 class="mb-3"><?php echo date('d-m-Y', strtotime($row->tanggal)); ?></h6>
+                            <span><?php echo substr($row->isi, 0, 100) . '...'; ?></span>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
             </div>
-           
         </div>
     </div>
     

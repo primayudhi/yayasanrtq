@@ -139,11 +139,19 @@ class Admin_model extends CI_Model
     
 
     //berita
-      public function get_all_berita()
+    public function get_all_berita()
     {
-
+        $this->db->order_by("tanggal", "desc");
         return $this->db->get('data_berita')->result();
     }
+
+    public function get_all_berita_limit()
+    {
+        $this->db->order_by("tanggal", "desc");
+        $this->db->limit(6);
+        return $this->db->get('data_berita')->result();
+    }
+
     public function insert_berita($data)
 
     {

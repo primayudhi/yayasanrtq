@@ -67,18 +67,6 @@
                             </div>
                         </div>
                         <div class="row clearfix">
-                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                <label for="slug">Slug</label>
-                            </div>
-                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" name="slug" placeholder="Masukkan Slug" class="form-control" value="<?= $slug; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
                             <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
                                 <a href="<?php echo site_url('Admin/berita_list') ?>" class="btn btn-danger">Kembali</a>
                                 <input type="submit" values="simpan" class="btn btn-primary" onclick="simpan()">

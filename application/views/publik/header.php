@@ -78,9 +78,9 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto mx-lg-auto py-0">
                 <a href="<?php echo site_url(''); ?>" class="nav-item nav-link active">HOME</a>
-                <a href="#about" class="nav-item nav-link">TENTANG KAMI</a>
-                <a href="#menu" class="nav-item nav-link">INFORMASI</a>
-                <a href="#terkini" class="nav-item nav-link">BERITA TERKINI</a>
+                <a href="<?php echo site_url(''); ?>#about" class="nav-item nav-link">TENTANG KAMI</a>
+                <a href="<?php echo site_url(''); ?>#menu" class="nav-item nav-link">INFORMASI</a>
+                <a href="<?php echo site_url(''); ?>#terkini" class="nav-item nav-link">BERITA TERKINI</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">LAINNYA</a>
                     <div class="dropdown-menu m-0">

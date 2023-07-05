@@ -570,7 +570,6 @@ class Admin extends CI_Controller {
 			'judul' => set_value('judul'),
 			'foto' => set_value('foto'),
 			'isi' => set_value('isi'),
-			'slug' => set_value('slug'),
 
 		);
 
@@ -589,21 +588,43 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('tanggal','Tanggal','trim|required');
 		$this->form_validation->set_rules('judul','Judul','trim|required');
 		$this->form_validation->set_rules('isi','Isi','trim|required');
-		$this->form_validation->set_rules('slug','Slug','trim|required');
 	}
 
 	public function tambah_berita_aksi()
 	{
+		function slugify($txt) {
+			// replace non letter or digits by -
+			$txt = preg_replace('~[^\pL\d]+~u', '-', $txt);
+		   
+			// transliterate
+			$txt = iconv('utf-8', 'us-ascii//TRANSLIT', $txt);
+		   
+			// remove unwanted characters
+			$txt = preg_replace('~[^-\w]+~', '', $txt);
+		   
+			// trim
+			$txt = trim($txt, '-');
+		   
+			// remove duplicate -
+			$txt = preg_replace('~-+~', '-', $txt);
+		   
+			// lowercase
+			$isi = strtolower($txt);
+			 
+		  return $isi;
+		}
+
 		$this->_rulesberita();
 		if($this->form_validation->run() == FALSE) {
 			$this->tambah_berita_admin();
 		} else{
+			$isi_slug = $this->input->post('judul');
 			$data = array(
 				'tanggal' => $this->input->post('tanggal'),
 				'judul' => $this->input->post('judul'),
 				'foto' => $this->input->post('foto'),
 				'isi' => $this->input->post('isi'),
-				'slug' => $this->input->post('slug'),
+				'slug' => slugify($isi_slug),
 			);
 
 			
@@ -666,7 +687,6 @@ class Admin extends CI_Controller {
 				'judul' => $data_berita->judul,
 				'foto' => $data_berita->foto,
 				'isi' => $data_berita->isi,
-				'slug' => $data_berita->slug,
 				'data_berita' => $data_berita 
 		);
 
@@ -675,17 +695,41 @@ class Admin extends CI_Controller {
 
 	public function proses_ubah_berita()
 	{
+		function slugify($txt) {
+			// replace non letter or digits by -
+			$txt = preg_replace('~[^\pL\d]+~u', '-', $txt);
+		   
+			// transliterate
+			$txt = iconv('utf-8', 'us-ascii//TRANSLIT', $txt);
+		   
+			// remove unwanted characters
+			$txt = preg_replace('~[^-\w]+~', '', $txt);
+		   
+			// trim
+			$txt = trim($txt, '-');
+		   
+			// remove duplicate -
+			$txt = preg_replace('~-+~', '-', $txt);
+		   
+			// lowercase
+			$isi = strtolower($txt);
+			 
+		  return $isi;
+		}
+
 		$this->_rulesberita();
 		if($this->form_validation->run() == FALSE) {
 			$id_berita = $this->input->post('id_berita');
 			$this->ubah_berita($id_berita);
 		}else{
 			$id_berita = $this->input->post('id_berita');
+			$isi_slug = $this->input->post('judul');
 			$data = array(
 				'tanggal' => $this->input->post('tanggal'),
 				'judul' => $this->input->post('judul'),
 				'foto' => $this->input->post('foto'),
 				'isi' => $this->input->post('isi'),
+				'slug' => slugify($isi_slug),
 			);
 
 			$this->Admin_model->update_berita($id_berita, $data);

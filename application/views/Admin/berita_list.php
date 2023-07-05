@@ -23,12 +23,11 @@
                   <table class="table table-bordered table-striped" id="tabelBerita">
                 <thead>
                   <tr>
-                    <th style="width: 100px;">Tanggal</th>
-                    <th style="width: 150px;">Judul</th>
-                    <th style="width: 200px;">Foto</th>
-                    <th style="width: 350px;">Isi</th>
-                    <th style="width: 150px;">Slug</th>
-                    <th><center>Aksi</center></th>
+                    <th style="width: 10%;">Tanggal</th>
+                    <th style="width: 20%;">Judul</th>
+                    <th style="width: 15%;">Foto</th>
+                    <th style="width: 45%;">Isi</th>
+                    <th style="width: 10%"><center>Aksi</center></th>
                   </tr>
               </thead>
                     <tbody>
@@ -42,7 +41,6 @@
                             <?php } ?> 
                         </td>
                         <td><?php echo $row->isi; ?></td>
-                        <td><?php echo $row->slug; ?></td>
                         <td class="text-nowrap">
                             <a href="<?php echo site_url('Admin/ubah_berita/' . $row->id_berita) ?>" class="btn btn-sm btn-warning">
                             <i class="material-icons">edit</i> <span>Edit</span></a>
