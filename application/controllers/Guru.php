@@ -324,6 +324,7 @@ class Guru extends CI_Controller {
 		if($this->form_validation->run() == FALSE) {
 			$this->tambah_hafalan_guru();
 		} else{
+			$id_murid = $this->input->post('id_murid');
 			$data = array(
 				'id_guru' => $this->input->post('id_guru'),
 				'id_murid' => $this->input->post('id_murid'),
@@ -332,8 +333,59 @@ class Guru extends CI_Controller {
 				'keterangan' => $this->input->post('keterangan'),
 			);
 			$this->Guru_model->insert_hafalan($data);
-			redirect(site_url('Guru/hafalan_list'));
+
+			$lastid = $this->Guru_model->inqlastid()->lastid;
+
+
+			redirect(site_url('Guru/hafalan_surah/'.$lastid));
 		}
+	}
+
+	public function hafalan_surah($id_setorhafalan)
+	{
+		
+		$data_hafalan = $this->Guru_model->get_hafalan($id_setorhafalan);
+		$data_surah = $this->Guru_model->get_all_surah();
+		$data = array(
+			'menu_home' => '',
+			'menu_guru' => '',
+			'menu_murid' => '',
+			'menu_hafalan' => 'active',
+			'id_setorhafalan' => set_value('id_setoranhafalan', $id_setorhafalan),
+			'id_murid' => set_value('id_murid', $data_hafalan->id_murid),
+			'id_guru' => set_value('id_murid', $data_hafalan->id_guru),
+			'tanggal' => set_value('tanggal', $data_hafalan->tanggal),
+			'kualitas_hafalan' => set_value('kualitas_hafalan', $data_hafalan->kualitas_hafalan),
+			'keterangan' => set_value('keterangan', $data_hafalan->keterangan),
+			'data_surah' => $data_surah,
+		);
+
+
+		$this->template->load('template/template_guru', 'guru/form_pilih_surah', $data);
+	}
+
+	public function hafalan_ayat($id_murid, $id_surah, $id_setorhafalan)
+	{
+		$data_hafalan = $this->Guru_model->get_hafalan($id_setorhafalan);
+		$data_ayat = $this->Guru_model->get_ayat_by_surah($id_surah);
+		$data_surah = $this->Guru_model->get_surah($id_surah);
+		$data = array(
+			'menu_home' => '',
+			'menu_guru' => '',
+			'menu_murid' => '',
+			'menu_hafalan' => 'active',
+			'id_setorhafalan' => set_value('id_setoranhafalan', $id_setorhafalan),
+			'id_murid' => set_value('id_murid', $data_hafalan->id_murid),
+			'id_guru' => set_value('id_murid', $data_hafalan->id_guru),
+			'tanggal' => set_value('tanggal', $data_hafalan->tanggal),
+			'kualitas_hafalan' => set_value('kualitas_hafalan', $data_hafalan->kualitas_hafalan),
+			'keterangan' => set_value('keterangan', $data_hafalan->keterangan),
+			'data_surah' => $data_surah,
+			'data_ayat' => $data_ayat,
+		);
+
+
+		$this->template->load('template/template_guru', 'guru/form_pilih_ayat', $data);
 	}
 
 	//end hafalan

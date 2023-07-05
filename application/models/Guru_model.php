@@ -90,6 +90,54 @@ class Guru_model extends CI_Model
         return $this->db->get()->num_rows();
     }
 
+    public function inqlastid()
+    {   
+       $query = $this->db->query('SELECT LAST_INSERT_ID() as lastid');
+        
+       $res = $query->row();
+       return $res;
+
+    }
+
+    public function get_all_surah()
+    {
+        $this->db->select('*');
+        $this->db->from('data_surah');
+        return $this->db->get()->result();
+    }
+
+    public function get_surah($id_surah)
+    {
+        $this->db->select('*');
+        $this->db->from('data_surah');
+        $this->db->where('id_surah', $id_surah);
+        return $this->db->get()->row();
+    }
+
+    public function get_ayat_by_surah($id_surah)
+    {
+        $this->db->select('*');
+        $this->db->from('data_ayat');
+        $this->db->join('data_surah', 'data_surah.id_surah = data_ayat.id_surah');
+        $this->db->where('data_ayat.id_surah', $id_surah);
+        return $this->db->get()->result();
+    }
+
+    public function surah_by_murid($id_murid, $id_surah)
+    {   
+       $query = $this->db->query('SELECT *,
+                (SELECT COUNT(id_ayat) FROM data_ayat WHERE s.id_surah = data_ayat.id_surah
+                AND data_ayat.id_ayat IN (SELECT data_hafalanayat.id_ayat FROM data_hafalanayat, setor_hafalan WHERE 
+                data_hafalanayat.id_setorhafalan = setor_hafalan.id_setorhafalan
+                AND setor_hafalan.id_murid = '.$id_murid.')) as jlh_sdh,
+                ROUND((SELECT 100 * jlh_sdh / jumlah_ayat),0) as persen
+                FROM data_surah s where s.id_surah = '.$id_surah.'');
+        
+       $res = $query->row();
+       return $res;
+
+    }
+
     //search guru
     public function cariDataGuru()
     {

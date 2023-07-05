@@ -378,7 +378,9 @@
                         <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                 <img class="img-responsive mt-3" src="<?php echo base_url('/uploads/fotoberita/'.$row->foto); ?>" alt="" style="width: 100%">
                                 <br>
-                            <h5 class="text-uppercase"><?php echo substr($row->judul, 0, 50) . '...'; ?></h5>
+                            <a href="<?php echo site_url('Publik/berita/'.$row->slug); ?>">
+                                <h5 class="text-uppercase"><?php echo substr($row->judul, 0, 50) . '...'; ?></h5>
+                            </a>
                             <h6 class="mb-3"><?php echo date('d-m-Y', strtotime($row->tanggal)); ?></h6>
                             <span><?php echo substr($row->isi, 0, 100) . '...'; ?></span>
                         </div>
