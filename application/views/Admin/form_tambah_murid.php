@@ -29,18 +29,25 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row clearfix">
-                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                <label for="kelas">Kelas</label>
-                            </div>
-                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" name="kelas" class="form-control" placeholder="Masukkan Nama Kelas"value="<?= $kelas; ?>">
-                                    </div>
-                                </div>
-                            </div>
+                         <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <label for="id_kelas">Kelas</label>
                         </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <input type="hidden" name="id_kelas" value="<?= $id_kelas; ?>" />
+                                <select class="form-control show-tick" name="id_kelas">
+                                    <?php
+                                        foreach($data_kelas as $kelas){ ?>
+                                            <option value='<?php echo $kelas->id_kelas ?>'>
+                                                <?php echo $kelas->nama_kelas ?>
+                                            </option>
+                                        <?php } ?>
+                                </select>
+                            </div>
+                            
+                        </div>
+                    </div>
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                 <label for="tempat_lahir">Tempat Lahir</label>
@@ -108,6 +115,18 @@
                         </div>
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                <label for="nama_ibu">Nama Ibu</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" name="nama_ibu" class="form-control" value="<?= $nama_ibu; ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                 <label for="nama_ayah">Nama Ayah</label>
                             </div>
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
@@ -120,12 +139,24 @@
                         </div>
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                <label for="nama_ibu">Nama Ibu</label>
+                                <label for="nik">NIK</label>
                             </div>
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="nama_ibu" class="form-control" value="<?= $nama_ibu; ?>">
+                                        <input type="text" name="nik" class="form-control" value="<?= $nik; ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                <label for="no_kk">NO KK</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" name="no_kk" class="form-control" value="<?= $no_kk; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -152,6 +183,7 @@
 
                                         <input type="file" name="foto" class="form-control" value="<?= $foto; ?>">
                                     </div>
+                                    <p style="color: red;">Size Foto Max 2mb
                                 </div>
                             </div>
                         </div>
@@ -179,7 +211,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row clearfix">
+                            <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                <label for="hak_akses">Hak Akses</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" name="hak_akses" class="form-control" value="<?= $hak_akses; ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                 <label for="akif">Aktif</label>

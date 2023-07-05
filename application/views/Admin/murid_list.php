@@ -30,14 +30,14 @@
                     <th align="center" style="width: 10px;">Jenis Kelamin</th>
                     <th align="center" width="300px">Alamat</th>
                     <th align="center">Foto</th>
-                    <th>Aksi</th>
+                    <th><center>Aksi</center></th>
                   </tr>
               </thead>
                   <?php foreach($data_murid as $row) { ?>
                     <tbody>
                     <tr>
                         <td><?php echo $row->nama_murid; ?></td>
-                        <td><?php echo $row->kelas; ?></td>
+                        <td><?php echo $row->nama_kelas; ?></td>
                         <td><?php echo $row->tempat_lahir; ?></td>
                         <td><?php echo $row->tanggal_lahir; ?></td>
                         <td><?php echo $row->jk; ?></td>
@@ -94,7 +94,7 @@
                         </tr>
                          <tr>
                             <th style="">kelas</th>
-                            <td><?php echo $murid->kelas; ?></td>
+                            <td><?php echo $murid->nama_kelas; ?></td>
                         </tr>
                          <tr>
                             <th style="">Tempat Lahir</th>
@@ -129,6 +129,14 @@
                          <tr>
                             <th style="">Nama Ayah</th>
                             <td><?php echo $murid->nama_ayah; ?></td>
+                        </tr>
+                        <tr>
+                            <th style="">NIK</th>
+                            <td><?php echo $murid->nik; ?></td>
+                        </tr>
+                        <tr>
+                            <th style="">NO KK</th>
+                            <td><?php echo $murid->no_kk; ?></td>
                         </tr>
                         <tr>
                             <th style="">Username</th>

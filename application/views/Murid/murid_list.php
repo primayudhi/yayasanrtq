@@ -21,14 +21,9 @@
                   <tr>
                     <th align="center" style="width: 200px;">Nama Murid</th>
                     <th align="center">Kelas</th>
-                    <th align="center">Tempat Lahir</th>
-                    <th align="center">Tanggal Lahir</th>
                     <th align="center" style="width: 10px;">Jenis Kelamin</th>
                     <th align="center">Alamat</th>
                     <th align="center">Foto</th>
-                    <th align="center">No Telepon</th>
-                    <th align="center">Nama Ibu</th>
-                    <th align="center">Nama Ayah</th>
                     <th align="center">Aktif</th>
                   </tr>
               </thead>
@@ -36,9 +31,7 @@
                     <tbody>
                     <tr>
                         <td><?php echo $row->nama_murid; ?></td>
-                        <td><?php echo $row->kelas; ?></td>
-                        <td><?php echo $row->tempat_lahir; ?></td>
-                        <td><?php echo $row->tanggal_lahir; ?></td>
+                        <td><?php echo $row->nama_kelas; ?></td>
                         <td><?php echo $row->jk; ?></td>
                         <td><?php echo $row->alamat; ?></td>
                         <td>
@@ -46,9 +39,6 @@
                             <img src="<?php echo base_url('uploads/fotomurid/'.$row->foto); ?>" style="height: 90px;border: 1px solid black;" />
                             <?php } ?> 
                         </td>
-                        <td><?php echo $row->no_telepon; ?></td>
-                        <td><?php echo $row->nama_ibu; ?></td>
-                        <td><?php echo $row->nama_ayah; ?></td>
                         <td><?php echo $row->aktif; ?></td>
                     </tr>
                 <?php } ?>

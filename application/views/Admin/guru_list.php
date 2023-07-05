@@ -140,8 +140,12 @@
                             <td><?php echo $guru->email; ?></td>
                         </tr>
                         <tr>
-                            <th style="">Keterangan</th>
-                            <td><?php echo $guru->keterangan; ?></td>
+                            <th style="">Pendidikan Terakhir</th>
+                            <td><?php echo $guru->pendidikan_terakhir; ?></td>
+                        </tr>
+                        <tr>
+                            <th style="">Masa Kerja</th>
+                            <td><?php echo $guru->masa_kerja; ?></td>
                         </tr>
                         <tr>
                             <th style="">Username</th>

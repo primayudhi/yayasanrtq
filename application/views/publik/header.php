@@ -77,10 +77,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto mx-lg-auto py-0">
-                <a href="#home" class="nav-item nav-link active">HOME</a>
+                <a href="<?php echo site_url(''); ?>" class="nav-item nav-link active">HOME</a>
                 <a href="#about" class="nav-item nav-link">TENTANG KAMI</a>
                 <a href="#menu" class="nav-item nav-link">INFORMASI</a>
-                <a href="#team" class="nav-item nav-link">USTADZ/AH</a>
+                <a href="#terkini" class="nav-item nav-link">BERITA TERKINI</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">LAINNYA</a>
                     <div class="dropdown-menu m-0">
@@ -88,7 +88,8 @@
                         <a href="#alamat" class="dropdown-item">ALAMAT</a>
                     </div>
                 </div>
-                <a href="<?php echo site_url('login'); ?>" class="nav-item nav-link" target="blank">LOGIN</a>
+                <a href="<?php echo site_url('/Publik/berita'); ?>" class="nav-item nav-link active">BERITA</a>
+                <a href="<?php echo site_url('login'); ?>" class="nav-item nav-link active" target="blank">LOGIN</a>
             </div>
         </div>
     </nav>

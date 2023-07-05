@@ -33,7 +33,7 @@
                     <tbody>
                     <tr>
                         <td><?php echo $row->nama_murid; ?></td>
-                        <td><?php echo $row->kelas; ?></td>
+                        <td><?php echo $row->nama_kelas; ?></td>
                         <td><?php echo $row->tempat_lahir; ?></td>
                         <td><?php echo $row->tanggal_lahir; ?></td>
                         <td><?php echo $row->jk; ?></td>
@@ -85,7 +85,7 @@
                         </tr>
                          <tr>
                             <th style="">kelas</th>
-                            <td><?php echo $murid->kelas; ?></td>
+                            <td><?php echo $murid->nama_kelas; ?></td>
                         </tr>
                          <tr>
                             <th style="">Tempat Lahir</th>

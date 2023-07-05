@@ -50,6 +50,7 @@
                                     <div class="form-line">
                                         <input type="file" name="foto" class="form-control" value="<?= $foto; ?>">
                                     </div>
+                                    <p style="color: red;">Size Foto Max 2mb
                                 </div>
                             </div>
                         </div>
@@ -61,6 +62,18 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <input type="text" name="isi" placeholder="Masukkan Isi" class="form-control" value="<?= $isi; ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                <label for="slug">Slug</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" name="slug" placeholder="Masukkan Slug" class="form-control" value="<?= $slug; ?>">
                                     </div>
                                 </div>
                             </div>

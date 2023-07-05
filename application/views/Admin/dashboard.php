@@ -52,6 +52,7 @@
                     </div>
                 </div>
             </div>
+            
             <!-- #END# Widgets -->
             
             <div class="row clearfix">

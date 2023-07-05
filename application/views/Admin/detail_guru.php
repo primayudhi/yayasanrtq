@@ -57,7 +57,7 @@
             <td><?php echo $row->email; ?></td>
             <td><?php echo $row->keterangan; ?></td>
             <td><?php echo $row->username; ?></td>
-            <td><?php echo $row->password_guru; ?></td>
+            <td><?php echo $row->password; ?></td>
             <td><?php echo $row->aktif; ?></td>
             
         </tr>

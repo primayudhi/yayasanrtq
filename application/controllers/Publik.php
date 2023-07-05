@@ -22,16 +22,58 @@ class Publik extends CI_Controller {
 	 public function __construct()
 	 {
 		 parent::__construct();
+		 $this->load->model('Admin_model');
+
 	 }
 
 	public function index()
 	{
+		$data = array(
+				'data_berita' =>$this->Admin_model->get_all_berita(),
+			);
 
 		$this->load->view('publik/header');
-		$this->load->view('publik/content');
+		$this->load->view('publik/content',$data);
 		$this->load->view('publik/footer');
 		//$this->load->view('publik/login');
 
 
+	}
+
+	public function berita()
+	{
+			$data = array(
+				'data_berita' =>$this->Admin_model->get_all_berita(),
+			);
+
+			$this->load->view('publik/header');
+			$this->load->view('publik/berita', $data);
+			$this->load->view('publik/footer');
+
+	}
+
+	public function slug($slug = NULL)
+	{
+		if($slug) {
+
+			$data = array(
+				'data_berita' =>$this->Admin_model->get_berita_slug($slug),
+			);
+
+			$this->load->view('publik/header', $data);
+			$this->load->view('publik/detail_berita', $data);
+			$this->load->view('publik/footer');
+
+		} else {
+
+			$data = array(
+				'data_berita' =>$this->Admin_model->get_all_berita(),
+			);
+
+			$this->load->view('publik/header', $data);
+			$this->load->view('publik/berita', $data);
+			$this->load->view('publik/footer');
+
+		}
 	}
 }

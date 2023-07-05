@@ -109,12 +109,14 @@
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                 <label for="foto">Foto Guru</label>
+
                             </div>
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <input type="file" name="foto" class="form-control" value="<?= $foto; ?>">
                                     </div>
+                                    <p style="color: red;">Size Foto Max 2mb</p>
                                 </div>
                             </div>
                         </div>
@@ -156,12 +158,38 @@
                         </div>
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                <label for="keterangan">Keterangan</label>
+                                <label for="">Pendidikan Terakhir</label>
                             </div>
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="keterangan" class="form-control" value="<?= $keterangan; ?>">
+                                        <input name="pendidikan_terakhir" type="radio" class="with-gap" value="SMA/SMK" id="radio_pendidikan_sma/smk"
+                                        <?php if($pendidikan_terakhir == 'SMA/SMK') { echo "checked"; } ?>/>
+                                        <label for="radio_pendidikan_sma/smk">SMA/SMK</label>
+                                        <input name="pendidikan_terakhir" type="radio" class="with-gap" value="D3" id="radio_pendidikan_d3" 
+                                        <?php if($pendidikan_terakhir == 'D3') { echo "checked"; } ?>/>
+                                        <label for="radio_pendidikan_d3">D3</label>
+                                        <input name="pendidikan_terakhir" type="radio" class="with-gap" value="S1" id="radio_pendidikan_s1" 
+                                        <?php if($pendidikan_terakhir == 'S1') { echo "checked"; } ?>/>
+                                        <label for="radio_pendidikan_s1">S1</label>
+                                        <input name="pendidikan_terakhir" type="radio" class="with-gap" value="S2" id="radio_pendidikan_s2" 
+                                        <?php if($pendidikan_terakhir == 'S2') { echo "checked"; } ?>/>
+                                        <label for="radio_pendidikan_s2">S2</label>
+                                        <input name="pendidikan_terakhir" type="radio" class="with-gap" value="Lainnya" id="radio_pendidikan_lainnya" 
+                                        <?php if($pendidikan_terakhir == 'Lainnya') { echo "checked"; } ?>/>
+                                        <label for="radio_pendidikan_lainnya">Lainnya</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                <label for="masa_kerja">Masa Kerja</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" name="masa_kerja" class="form-control" value="<?= $masa_kerja; ?>">
                                     </div>
                                 </div>
                             </div>

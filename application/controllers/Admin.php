@@ -34,6 +34,9 @@ class Admin extends CI_Controller {
 			'menu_murid' => '',
 			'menu_berita' => '',
 			'menu_hafalan' => '',
+			'menu_kelas' => '',
+			'menu_admin' => '',
+
 
 			
 		);
@@ -45,6 +48,7 @@ class Admin extends CI_Controller {
 		$data['setor_hafalan'] = $this->Admin_model->setor_hafalan();
 
 
+
 		$this->template->load('template/template_admin', 'admin/dashboard', $data);
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("login"));
@@ -52,21 +56,7 @@ class Admin extends CI_Controller {
 	}
 	//End Index
 
-	//Admin
-	public function admin_list()
-	{
-		$data = array(
-			'data_admin' => $this->Admin_model->get_all_admin()
-		);
 
-		$this->load->view('Admin/admin_list', $data);
-	}
-		public function hapus_admin($id_user)
-	{
-		$this->Admin_model->delete_admin($id_user);
-
-		redirect(site_url('Admin'));
-	}
 	//End Admin
 	
 	//Murid
@@ -78,6 +68,8 @@ class Admin extends CI_Controller {
 			'menu_murid' => 'active',
 			'menu_berita' => '',
 			'menu_hafalan' => '',
+			'menu_kelas' => '',
+			'menu_admin' => '',
 			'data_murid' =>$this->Admin_model->get_all_murid());
 
 			if( $this->input->post('keyword')){
@@ -100,10 +92,12 @@ class Admin extends CI_Controller {
 			'menu_murid' => 'active',
 			'menu_berita' => '',
 			'menu_hafalan' => '',
+			'menu_kelas' => '',
+			'menu_admin' => '',
 			'action' => site_url('Admin/tambah_murid_aksi'),
 			'id_murid' => set_value('id_murid'),
 			'nama_murid' => set_value('nama_murid'),
-			'kelas' => set_value('kelas'),
+			'id_kelas' => set_value('id_kelas'),
 			'tempat_lahir' => set_value('tempat_lahir'),
 			'tanggal_lahir' => set_value('tanggal_lahir'),
 			'jk' => set_value('jk'),
@@ -112,9 +106,13 @@ class Admin extends CI_Controller {
 			'no_telepon' => set_value('no_telepon'),
 			'nama_ibu' => set_value('nama_ibu'),
 			'nama_ayah' => set_value('nama_ayah'),
+			'nik' => set_value('nik'),
+			'no_kk' => set_value('no_kk'),
 			'username' => set_value('username'),
 			'password' => set_value('password'),
+			'hak_akses' => set_value('hak_akses'),
 			'aktif' => set_value('aktif'),
+			'data_kelas' => $this->Admin_model->get_all_kelas(),
 
 
 
@@ -133,7 +131,7 @@ class Admin extends CI_Controller {
 	public function _rules() 
 	{
 		$this->form_validation->set_rules('nama_murid','Nama Murid','trim|required');
-		$this->form_validation->set_rules('kelas','Kelas','trim|required');
+		$this->form_validation->set_rules('id_kelas','Kelas','trim|required');
 		$this->form_validation->set_rules('tempat_lahir','Tempat Lahir','trim|required');
 		$this->form_validation->set_rules('tanggal_lahir','Tanggal Lahir','trim|required');
 		$this->form_validation->set_rules('jk','Jenis Kelamin','trim|required');
@@ -141,8 +139,11 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('no_telepon','No Telepon','trim|required');
 		$this->form_validation->set_rules('nama_ibu','Nama Ibu','trim|required');
 		$this->form_validation->set_rules('nama_ayah','Nama Ayah','trim|required');
+		$this->form_validation->set_rules('nik','NIK','trim|required');
+		$this->form_validation->set_rules('no_kk','NO KK','trim|required');
 		$this->form_validation->set_rules('username','Username','trim|required');
 		$this->form_validation->set_rules('password','Password Murid','trim|required');
+		$this->form_validation->set_rules('hak_akses','Hak Akses','trim|required');
 		$this->form_validation->set_rules('aktif','Status Aktif','trim|required');
 
 
@@ -157,7 +158,7 @@ class Admin extends CI_Controller {
 		} else{
 			$data = array(
 				'nama_murid' => $this->input->post('nama_murid'),
-				'kelas' => $this->input->post('kelas'),
+				'id_kelas' => $this->input->post('id_kelas'),
 				'tempat_lahir' => $this->input->post('tempat_lahir'),
 				'tanggal_lahir' => $this->input->post('tanggal_lahir'),
 				'jk' => $this->input->post('jk'),
@@ -166,6 +167,8 @@ class Admin extends CI_Controller {
 				'no_telepon' => $this->input->post('no_telepon'),
 				'nama_ibu' => $this->input->post('nama_ibu'),
 				'nama_ayah' => $this->input->post('nama_ayah'),
+				'nik' => $this->input->post('nik'),
+				'no_kk' => $this->input->post('no_kk'),
 				'username' => $this->input->post('username'),
 				'password' => $this->input->post('password'),
 				'hak_akses' => 'M',
@@ -225,11 +228,13 @@ class Admin extends CI_Controller {
 				'menu_guru' => '',
 				'menu_berita' => '',
 				'menu_hafalan' => '',
+				'menu_kelas' => '',
+				'menu_admin' => '',
 				'judul' => 'UBAH MURID',
 				'action' => site_url('Admin/proses_ubah_murid'),
 				'id_murid' => $data_murid->id_murid,
 				'nama_murid' => $data_murid->nama_murid,
-				'kelas' => $data_murid->kelas,
+				'id_kelas' => $data_murid->id_kelas,
 				'tempat_lahir' => $data_murid->tempat_lahir,
 				'tanggal_lahir' => $data_murid->tanggal_lahir,
 				'jk' => $data_murid->jk,
@@ -238,10 +243,13 @@ class Admin extends CI_Controller {
 				'no_telepon' => $data_murid->no_telepon,
 				'nama_ibu' => $data_murid->nama_ibu,
 				'nama_ayah' => $data_murid->nama_ayah,
+				'nik' => $data_murid->nik,
+				'no_kk' => $data_murid->no_kk,
 				'username' => $data_murid->username,
 				'password' => $data_murid->password,
 				'hak_akses' => $data_murid->hak_akses,
 				'aktif' => $data_murid->aktif,
+				'data_kelas' => $this->Admin_model->get_all_kelas(),
 				'data_murid' => $data_murid 
 		);
 
@@ -258,7 +266,7 @@ class Admin extends CI_Controller {
 			$id_murid = $this->input->post('id_murid');
 			$data = array(
 				'nama_murid' => $this->input->post('nama_murid'),
-				'kelas' => $this->input->post('kelas'),
+				'id_kelas' => $this->input->post('id_kelas'),
 				'tempat_lahir' => $this->input->post('tempat_lahir'),
 				'tanggal_lahir' => $this->input->post('tanggal_lahir'),
 				'jk' => $this->input->post('jk'),
@@ -267,6 +275,8 @@ class Admin extends CI_Controller {
 				'no_telepon' => $this->input->post('no_telepon'),
 				'nama_ibu' => $this->input->post('nama_ibu'),
 				'nama_ayah' => $this->input->post('nama_ayah'),
+				'nik' => $this->input->post('nik'),
+				'no_kk' => $this->input->post('no_kk'),
 				'username' => $this->input->post('username'),
 				'password' => $this->input->post('password'),
 				'hak_akses' => $this->input->post('hak_akses'),
@@ -297,6 +307,8 @@ class Admin extends CI_Controller {
 			'menu_murid' => '',
 			'menu_berita' => '',
 			'menu_hafalan' => '',
+			'menu_kelas' => '',
+			'menu_admin' => '',
 			'data_guru' =>$this->Admin_model->get_all_guru());
 			if( $this->input->post('keyword')){
 				$data['data_guru']=$this->Admin_model->cariDataGuru();
@@ -316,6 +328,8 @@ class Admin extends CI_Controller {
 			'menu_murid' => '',
 			'menu_berita' => '',
 			'menu_hafalan' => '',
+			'menu_kelas' => '',
+			'menu_admin' => '',
 			'action' => site_url('Admin/tambah_guru_aksi'),
 			'id_guru' => set_value('id_guru'),
 			'nama_guru' => set_value('nama_guru'),
@@ -329,7 +343,8 @@ class Admin extends CI_Controller {
 			'jabatan' => set_value('jabatan'),
 			'no_telepon' => set_value('no_telepon'),
 			'email' => set_value('email'),
-			'keterangan' => set_value('keterangan'),
+			'pendidikan_terakhir' => set_value('pendidikan_terakhir'),
+			'masa_kerja' => set_value('masa_kerja'),
 			'username' => set_value('username'),
 			'password' => set_value('password'),
 			'hak_akses' => set_value('hak_akses'),
@@ -358,7 +373,8 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('jabatan','Jabatan','trim|required');
 		$this->form_validation->set_rules('no_telepon','No Telepon','trim|required');
 		$this->form_validation->set_rules('email','Email','trim|required');
-		$this->form_validation->set_rules('keterangan','Keterangan','trim|required');
+		$this->form_validation->set_rules('pendidikan_terakhir','Pendidikan Terakhir','trim|required');
+		$this->form_validation->set_rules('masa_kerja','Masa Kerja','trim|required');
 		$this->form_validation->set_rules('username','Username','trim|required');
 		$this->form_validation->set_rules('password','Password Guru','trim|required');
 		$this->form_validation->set_rules('hak_akses','Hak Akses','trim|required');
@@ -382,7 +398,8 @@ class Admin extends CI_Controller {
 				'jabatan' => $this->input->post('jabatan'),
 				'no_telepon' => $this->input->post('no_telepon'),
 				'email' => $this->input->post('email'),
-				'keterangan' => $this->input->post('keterangan'),
+				'pendidikan_terakhir' => $this->input->post('pendidikan_terakhir'),
+				'masa_kerja' => $this->input->post('masa_kerja'),
 				'username' => $this->input->post('username'),
 				'password' => $this->input->post('password'),
 				'hak_akses' => 'G',
@@ -452,6 +469,8 @@ class Admin extends CI_Controller {
 				'menu_guru' => 'active',
 				'menu_berita' => '',
 				'menu_hafalan' => '',
+				'menu_kelas' => '',
+				'menu_admin' => '',
 				'judul' => 'UBAH GURU',
 				'action' => site_url('Admin/proses_ubah_guru'),
 				'id_guru' => $data_guru->id_guru,
@@ -466,7 +485,8 @@ class Admin extends CI_Controller {
 				'jabatan' => $data_guru->jabatan,
 				'no_telepon' => $data_guru->no_telepon,
 				'email' => $data_guru->email,
-				'keterangan' => $data_guru->keterangan,
+				'pendidikan_terakhir' => $data_guru->pendidikan_terakhir,
+				'masa_kerja' => $data_guru->masa_kerja,
 				'username' => $data_guru->username,
 				'password'=> $data_guru->password,
 				'hak_akses' => $data_guru->hak_akses,
@@ -497,7 +517,8 @@ class Admin extends CI_Controller {
 				'jabatan' => $this->input->post('jabatan'),
 				'no_telepon' => $this->input->post('no_telepon'),
 				'email' => $this->input->post('email'),
-				'keterangan' => $this->input->post('keterangan'),
+				'pendidikan_terakhir' => $this->input->post('pendidikan_terakhir'),
+				'masa_kerja' => $this->input->post('masa_kerja'),
 				'username' => $this->input->post('username'),
 				'password' => $this->input->post('password'),
 				'hak_akses' => $this->input->post('hak_akses'),
@@ -519,6 +540,8 @@ class Admin extends CI_Controller {
 			'menu_murid' => '',
 			'menu_berita' => 'active',
 			'menu_hafalan' => '',
+			'menu_kelas' => '',
+			'menu_admin' => '',
 			'data_berita' =>$this->Admin_model->get_all_berita());
 		if( $this->input->post('keyword')){
 				$data['data_berita']=$this->Admin_model->cariDataBerita();
@@ -539,12 +562,16 @@ class Admin extends CI_Controller {
 			'menu_murid' => '',
 			'menu_berita' => 'active',
 			'menu_hafalan' => '',
+			'menu_kelas' => '',
+			'menu_admin' => '',
 			'action' => site_url('Admin/tambah_berita_aksi'),
 			'id_berita' => set_value('id_berita'),
 			'tanggal' => set_value('tanggal'),
 			'judul' => set_value('judul'),
 			'foto' => set_value('foto'),
 			'isi' => set_value('isi'),
+			'slug' => set_value('slug'),
+
 		);
 
 		$this->template->load('template/template_admin', 'admin/form_tambah_berita', $data);
@@ -562,6 +589,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('tanggal','Tanggal','trim|required');
 		$this->form_validation->set_rules('judul','Judul','trim|required');
 		$this->form_validation->set_rules('isi','Isi','trim|required');
+		$this->form_validation->set_rules('slug','Slug','trim|required');
 	}
 
 	public function tambah_berita_aksi()
@@ -575,6 +603,7 @@ class Admin extends CI_Controller {
 				'judul' => $this->input->post('judul'),
 				'foto' => $this->input->post('foto'),
 				'isi' => $this->input->post('isi'),
+				'slug' => $this->input->post('slug'),
 			);
 
 			
@@ -628,6 +657,8 @@ class Admin extends CI_Controller {
 				'menu_guru' => '',
 				'menu_berita' => 'active',
 				'menu_hafalan' => '',
+				'menu_kelas' => '',
+				'menu_admin' => '',
 				'judul' => 'UBAH BERITA',
 				'action' => site_url('Admin/proses_ubah_berita'),
 				'id_berita' => $data_berita->id_berita,
@@ -635,6 +666,7 @@ class Admin extends CI_Controller {
 				'judul' => $data_berita->judul,
 				'foto' => $data_berita->foto,
 				'isi' => $data_berita->isi,
+				'slug' => $data_berita->slug,
 				'data_berita' => $data_berita 
 		);
 
@@ -680,6 +712,8 @@ public function hafalan_list()
 			'menu_murid' => '',
 			'menu_berita' => '',
 			'menu_hafalan' => 'active',
+			'menu_kelas' => '',
+			'menu_admin' => '',
 			'setor_hafalan' =>$this->Admin_model->get_all_hafalan());
 			/*
 			if( $this->input->post('keyword')){
@@ -721,6 +755,8 @@ public function hafalan_list()
 				'menu_murid' => '',
 				'menu_berita' => '',
 				'menu_hafalan' => 'active',
+				'menu_kelas' => '',
+				'menu_admin' => '',
 				'judul' => 'UBAH HAFALAN',
 				'action' => site_url('Admin/proses_ubah_hafalan'),
 				'id_setorhafalan' => $setor_hafalan->id_setorhafalan,
@@ -770,6 +806,8 @@ public function hafalan_list()
 			'menu_murid' => '',
 			'menu_berita' => '',
 			'menu_hafalan' => 'active',
+			'menu_kelas' => '',
+			'menu_admin' => '',
 			'action' => site_url('Admin/tambah_hafalan_aksi'),
 			'id_setorhafalan' => set_value('id_setoranhafalan'),
 			'id_guru' => set_value('id_guru'),
@@ -828,4 +866,249 @@ public function hafalan_list()
 	// 	return $this->ci->Admin_model->get()->num_rows();
 	// }
 
+	//Admin
+
+	public function admin_list()
+	{
+		$data = array(
+			'menu_home' => '',
+			'menu_guru' => '',
+			'menu_murid' => '',
+			'menu_berita' => '',
+			'menu_hafalan' => '',
+			'menu_kelas' => '',
+			'menu_admin' => 'active',
+			'data_admin' =>$this->Admin_model->get_all_admin());
+
+			if( $this->input->post('keyword')){
+				$data['data_admin']=$this->Admin_model->cariDataAdmin();
+			
+			}
+
+		;
+
+		$this->template->load('template/template_admin', 'admin/admin_list', $data);
+	}
+
+	public function _rulesadmin() 
+	{
+		$this->form_validation->set_rules('nama_admin','Nama Admin','trim|required');
+		$this->form_validation->set_rules('username','Username','trim|required');
+		$this->form_validation->set_rules('password','Password','trim|required');
+		$this->form_validation->set_rules('hak_akses','Hak Akses','trim|required');
+		$this->form_validation->set_rules('aktif','aktif','trim|required');
+
+
+	}
+
+	public function ubah_admin($id_user)
+	{
+		$data_admin = $this->Admin_model->get_admin($id_user);
+		$data = array(
+				'menu_home' => '',
+				'menu_guru' => '',
+				'menu_murid' => '',
+				'menu_berita' => '',
+				'menu_hafalan' => '',
+				'menu_kelas' => '',
+				'menu_admin' => 'active',
+				'judul' => 'UBAH ADMIN',
+				'action' => site_url('Admin/proses_ubah_admin'),
+				'id_user' => $data_admin->id_user,
+				'nama_admin' => $data_admin->nama_admin,
+				'username' => $data_admin->username,
+				'password' => $data_admin->password,
+				'hak_akses' => $data_admin->hak_akses,
+				'aktif' => $data_admin->aktif,
+
+				'data_admin' => $data_admin
+
+		);
+
+		$this->template->load('template/template_admin', 'Admin/form_tambah_admin', $data);
+	}
+
+	public function proses_ubah_admin()
+	{
+		$this->_rulesadmin();
+		if($this->form_validation->run() == FALSE) {
+			$id_user = $this->input->post('id_user');
+			$this->ubah_admin($id_user);
+		}else{
+			$id_user = $this->input->post('id_user');
+			$data = array(
+				'nama_admin' => $this->input->post('nama_admin'),
+				'username' => $this->input->post('username'),
+				'password' => $this->input->post('password'),
+				'hak_akses' => $this->input->post('hak_akses'),
+				'aktif' => $this->input->post('aktif'),
+			
+			);
+
+			$this->Admin_model->update_admin($id_user, $data);
+			redirect(site_url('Admin/admin_list'));
+		}
+	}
+	
+
+	public function tambah_admin_admin()
+	{
+		$data = array(
+			'menu_home' => '',
+			'menu_guru' => '',
+			'menu_murid' => '',
+			'menu_berita' => '',
+			'menu_hafalan' => '',
+			'menu_kelas' => '',
+			'menu_admin' => 'active',
+			'action' => site_url('Admin/tambah_admin_aksi'),
+			'id_user' => set_value('id_user'),
+			'nama_admin' => set_value('nama_admin'),
+			'username' => set_value('username'),
+			'password' => set_value('password'),
+			'hak_akses' => set_value('hak_akses'),
+			'aktif' => set_value('aktif')
+
+		);
+
+
+		$this->template->load('template/template_admin', 'admin/form_tambah_admin', $data);
+	}
+
+	public function tambah_admin_aksi()
+	{
+		$this->_rulesadmin();
+		if($this->form_validation->run() == FALSE) {
+			$this->tambah_admin_admin();
+		} else{
+			$data = array(
+				'nama_admin' => $this->input->post('nama_admin'),
+				'username' => $this->input->post('username'),
+				'password' => $this->input->post('password'),
+				'hak_akses' => $this->input->post('hak_akses'),
+				'aktif' => $this->input->post('aktif'),
+			);
+			$this->Admin_model->insert_admin($data);
+			redirect(site_url('Admin/admin_list'));
+		}
+	}
+
+	public function hapus_admin($id_user)
+	{
+		$this->Admin_model->hapus_admin($id_user);
+
+		redirect(site_url('Admin/admin_list'));
+	}
+
+	//kelas
+
+	public function kelas_list()
+	{
+		$data = array(
+			'menu_home' => '',
+			'menu_guru' => '',
+			'menu_murid' => '',
+			'menu_berita' => '',
+			'menu_hafalan' => '',
+			'menu_kelas' => 'active',
+			'menu_admin' => '',
+			'data_kelas' =>$this->Admin_model->get_all_kelas());
+
+			if( $this->input->post('keyword')){
+				$data['data_kelas']=$this->Admin_model->cariDataKelas();
+			
+			}
+
+		;
+
+		$this->template->load('template/template_admin', 'admin/kelas_list', $data);
+	}
+
+	public function _ruleskelas() 
+	{
+		$this->form_validation->set_rules('nama_kelas','Nama Kelas','trim|required');
+	}
+
+	public function ubah_kelas($id_kelas)
+	{
+		$data_kelas = $this->Admin_model->get_kelas($id_kelas);
+		$data = array(
+				'menu_home' => '',
+				'menu_guru' => '',
+				'menu_murid' => '',
+				'menu_berita' => '',
+				'menu_hafalan' => '',
+				'menu_kelas' => 'active',
+				'menu_admin' => '',
+				'judul' => 'UBAH KELAS',
+				'action' => site_url('Admin/proses_ubah_kelas'),
+				'id_kelas' => $data_kelas->id_kelas,
+				'nama_kelas' => $data_kelas->nama_kelas,
+
+				'data_kelas' => $data_kelas
+
+		);
+
+		$this->template->load('template/template_admin', 'Admin/form_tambah_kelas', $data);
+	}
+
+	public function proses_ubah_kelas()
+	{
+		$this->_ruleskelas();
+		if($this->form_validation->run() == FALSE) {
+			$id_kelas = $this->input->post('id_kelas');
+			$this->ubah_kelas($id_kelas);
+		}else{
+			$id_kelas = $this->input->post('id_kelas');
+			$data = array(
+				'nama_kelas' => $this->input->post('nama_kelas'),
+			
+			);
+
+			$this->Admin_model->update_kelas($id_kelas, $data);
+			redirect(site_url('Admin/kelas_list'));
+		}
+	}
+	
+
+	public function tambah_kelas_admin()
+	{
+		$data = array(
+			'menu_home' => '',
+			'menu_guru' => '',
+			'menu_murid' => '',
+			'menu_berita' => '',
+			'menu_hafalan' => '',
+			'menu_kelas' => 'active',
+			'menu_admin' => '',
+			'action' => site_url('Admin/tambah_kelas_aksi'),
+			'id_kelas' => set_value('id_kelas'),
+			'nama_kelas' => set_value('nama_kelas')
+
+		);
+
+
+		$this->template->load('template/template_admin', 'admin/form_tambah_kelas', $data);
+	}
+
+	public function tambah_kelas_aksi()
+	{
+		$this->_ruleskelas();
+		if($this->form_validation->run() == FALSE) {
+			$this->tambah_kelas_admin();
+		} else{
+			$data = array(
+				'nama_kelas' => $this->input->post('nama_kelas'),
+			);
+			$this->Admin_model->insert_kelas($data);
+			redirect(site_url('Admin/kelas_list'));
+		}
+	}
+
+	public function hapus_kelas($id_kelas)
+	{
+		$this->Admin_model->hapus_kelas($id_kelas);
+
+		redirect(site_url('Admin/kelas_list'));
+	}
 }

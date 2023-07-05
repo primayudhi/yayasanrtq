@@ -83,7 +83,8 @@ class Guru extends CI_Controller {
 			'jabatan' => set_value('jabatan'),
 			'no_telepon' => set_value('no_telepon'),
 			'email' => set_value('email'),
-			'keterangan' => set_value('keterangan'),
+			'pendidikan_terakhir' => set_value('pendidikan_terakhir'),
+			'masa_kerja' => set_value('masa_kerja'),
 			'username' => set_value('username'),
 			'password' => set_value('password'),
 			'aktif' => set_value('aktif'),
@@ -106,13 +107,16 @@ class Guru extends CI_Controller {
 		$this->form_validation->set_rules('jabatan','Jabatan','trim|required');
 		$this->form_validation->set_rules('no_telepon','No Telepon','trim|required');
 		$this->form_validation->set_rules('email','Email','trim|required');
-		$this->form_validation->set_rules('keterangan','Keterangan','trim|required');
+		$this->form_validation->set_rules('pendidikan_terakhir','Pendidikan Terakhir','trim|required');
+		$this->form_validation->set_rules('masa_kerja','Masa Kerja','trim|required');
 		$this->form_validation->set_rules('username','Username','trim|required');
 		$this->form_validation->set_rules('password','Password Guru','trim|required');
 		$this->form_validation->set_rules('hak_akses','Hak Akses','trim|required');
 		$this->form_validation->set_rules('aktif','Status Aktif','trim|required');
 
 	}
+
+	
 
 	public function ubah_guru($id_guru)
 	{
@@ -136,7 +140,8 @@ class Guru extends CI_Controller {
 				'jabatan' => $data_guru->jabatan,
 				'no_telepon' => $data_guru->no_telepon,
 				'email' => $data_guru->email,
-				'keterangan' => $data_guru->keterangan,
+				'pendidikan_terakhir' => $data_guru->pendidikan_terakhir,
+				'masa_kerja' => $data_guru->masa_kerja,
 				'username' => $data_guru->username,
 				'password' => $data_guru->password,
 				'hak_akses' => $data_guru->hak_akses,
@@ -167,7 +172,8 @@ class Guru extends CI_Controller {
 				'jabatan' => $this->input->post('jabatan'),
 				'no_telepon' => $this->input->post('no_telepon'),
 				'email' => $this->input->post('email'),
-				'keterangan' => $this->input->post('keterangan'),
+				'pendidikan_terakhir' => $this->input->post('pendidikan_terakhir'),
+				'masa_kerja' => $this->input->post('masa_kerja'),
 				'username' => $this->input->post('username'),
 				'password' => $this->input->post('password'),
 				'hak_akses' => $this->input->post('hak_akses'),

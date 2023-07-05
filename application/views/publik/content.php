@@ -151,9 +151,7 @@
             </div>
             <div class="tab-class text-center">
                 <ul class="nav nav-pills d-inline-flex justify-content-center bg-dark text-uppercase border-inner p-4 mb-5">
-                    <li class="nav-item">
-                        <a class="nav-link text-white active" data-bs-toggle="pill" href="#tab-1">BERITA</a>
-                    </li>
+             
                     <li class="nav-item">
                         <a class="nav-link text-white" data-bs-toggle="pill" href="#tab-2">GALERI</a>
                     </li>
@@ -162,7 +160,7 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div id="tab-1" class="tab-pane fade show p-0 active">
+                    <!-- <div id="tab-1" class="tab-pane fade show p-0 active">
                         <div class="row g-3">
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
@@ -237,8 +235,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="tab-2" class="tab-pane fade show p-0">
+                    </div> -->
+                    <div id="tab-2" class="tab-pane fade show p-0 ">
                         <div class="row g-3">
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
@@ -284,7 +282,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="tab-3" class="tab-pane fade show p-0">
+                    <div id="tab-3" class="tab-pane fade show p-0 active">
                         <div class="row g-3">
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
@@ -363,72 +361,35 @@
     <!-- Products End -->
 
 
-    <!-- Team Start 
-    <div class="container-fluid py-5" id="team">
+    <!-- Berita -->
+    <div class="container-fluid py-5" id="terkini">
         <div class="container">
+            
             <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-                <h2 class="text-primary font-secondary">USTADZ/AH</h2>
-                <h1 class="display-4 text-uppercase">GURU RTQ AL HASAN</h1>
+                <h2 class="text-primary font-secondary">BERITA</h2>
+                <h1 class="display-4 text-uppercase">BERITA TERKINI</h1>
             </div>
-            <div class="row g-5">
-                <div class="col-lg-4 col-md-6">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="<?php echo base_url('templaterumahtahfidz') ?>/img/ustadz1.jpg" alt="">
-                            <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
+            <?php foreach($data_berita as $row) { ?>
+              <div class="row g-3">
+                            <div class="col-lg-4">
+                                <div class="d-flex h-100">
+                                    <div class="flex-shrink-0">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
+                                         <img class="img-responsive mt-3" src="<?php echo base_url('/uploads/fotoberita/'.$row->foto); ?>" alt="John" style="width: 100%">
+                                         <br>
+                                        <h5 class="text-uppercase"><?php echo $row->judul; ?></h5>
+                                        <span><?php echo $row->isi; ?></span>
+                                        <h6 class="mb-3"><?php echo $row->tanggal; ?></h6>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">Full Name</h4>
-                            <p class="text-white m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="<?php echo base_url('templaterumahtahfidz') ?>/img/ustadz2.jpg" alt="">
-                            <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">Full Name</h4>
-                            <p class="text-white m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-80" src="<?php echo base_url('templaterumahtahfidz') ?>/img/ustadz3.png" alt="">
-                            <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">Full Name</h4>
-                            <p class="text-white m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
+           
         </div>
     </div>
-    Team End -->
+    
 
 
     <!-- Offer Start -->

@@ -35,7 +35,10 @@ class Guru_model extends CI_Model
   //murid
      public function get_all_murid()
     {
-        return $this->db->get('data_murid')->result();
+        $this->db->select('*');
+        $this->db->from('data_murid');
+        $this->db->join('data_kelas', 'data_kelas.id_kelas = data_murid.id_kelas');
+        return $this->db->get()->result();
     }
     public function data_murid()
     {
@@ -48,15 +51,13 @@ class Guru_model extends CI_Model
   // End Murid 
   
   // Hafalan
-      public function get_all_hafalan()
+       public function get_all_hafalan()
     {
-
-        $this->db->select('*, data_guru.keterangan AS ket_guru, setor_hafalan.keterangan AS ket_hafalan');
+        $this->db->select('*,setor_hafalan.keterangan AS ket_hafalan');
         $this->db->from('setor_hafalan');
         $this->db->join('data_guru', 'data_guru.id_guru = setor_hafalan.id_guru');
         $this->db->join('data_murid', 'data_murid.id_murid = setor_hafalan.id_murid');
         return $this->db->get()->result();
-
     }
      public function insert_hafalan($data)
 

@@ -7,9 +7,12 @@ class Murid_model extends CI_Model
   
 
   //murid
-     public function get_all_murid()
+    public function get_all_murid()
     {
-        return $this->db->get('data_murid')->result();
+        $this->db->select('*');
+        $this->db->from('data_murid');
+        $this->db->join('data_kelas', 'data_kelas.id_kelas = data_murid.id_kelas');
+        return $this->db->get()->result();
     }
 
       public function data_murid()

@@ -72,6 +72,29 @@
             });
         </script>
 
+        <!-- di bawah ini adalah script untuk konfirmasi keluar dengan sweet alert  -->
+        <script>
+            $('.alert_logout').on('click',function(){
+                var getLink = $(this).attr('href');
+                Swal.fire({
+                    title: "Apakah Anda Yakin Ingin Keluar?",            
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Ya',
+                    cancelButtonColor: '#3085d6',
+                    cancelButtonText: "Batal"
+                
+                }).then(result => {
+                    //jika klik ya maka arahkan ke proses.php
+                    if(result.isConfirmed){
+                        window.location.href = getLink
+                    }
+                })
+                return false;
+            });
+        </script>
+
         <!-- Alert Modal Simpan Data -->
         <script type="text/javascript">
 

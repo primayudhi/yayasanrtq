@@ -28,7 +28,7 @@
                     <th style="width: 200px;">Tanggal</th>
                     <th style="width: 350px;">Kualitas Hafalan</th>
                     <th style="width: 350px;">Keterangan</th>
-                    <th>Aksi</th>
+                    <th><center>Aksi</center></th>
                     <!-- <th>Aksi</th> -->
                   </tr>
                     </thead>

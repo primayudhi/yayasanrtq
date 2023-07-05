@@ -12,9 +12,8 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profil</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="<?php echo site_url('Admin/logout') ?> "><i class="material-icons">input</i>Logout</a></li>
+                            <li><a href="javascript:void(0);"></a></li>
+                            <li><a href="<?php echo site_url('Admin/logout') ?> " class="alert_logout"><i class="material-icons">input</i>Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -54,8 +53,20 @@
                             <span>Hafalan</span>
                         </a>
                     </li>
+                    <li class="<?php echo $menu_kelas ?>">
+                        <a href="<?php echo site_url('Admin/kelas_list') ?>">
+                            <i class="material-icons">desk</i>
+                            <span>Kelas</span>
+                        </a>
+                    </li>
+                       <li class="<?php echo $menu_admin ?>">
+                        <a href="<?php echo site_url('Admin/admin_list') ?>">
+                            <i class="material-icons">man</i>
+                            <span>Admin</span>
+                        </a>
+                    </li>
                     <li>
-                        <a href="<?php echo site_url('Admin/logout') ?> " >
+                        <a href="<?php echo site_url('Admin/logout') ?> " class="alert_logout">
                             <i class="material-icons">exit_to_app</i>
                             <span>Logout</span>
                         </a>

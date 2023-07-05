@@ -4,23 +4,43 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin_model extends CI_Model
 {
+    //admin
     public function get_all_admin()
     {
         return $this->db->get('data_admin')->result();
     }
-    
-    //murid
-    public function get_all_murid()
-    {
-        return $this->db->get('data_murid')->result();
-    }
+     public function insert_admin($data)
 
-  
-    public function delete_admin($id_user)
+    {
+        $this->db->insert('data_admin',$data);
+    }
+     public function get_admin($id_user)
+    {
+        $this->db->where('id_user', $id_user);
+        return $this->db->get('data_admin')->row();
+    }
+    public function hapus_admin($id_user)
     {
         $this->db->where('id_user', $id_user);
         $this->db->delete('data_admin');
     }
+    public function update_admin($id_user, $data)
+    {
+        $this->db->where('id_user',$id_user);
+        $this->db->update('data_admin', $data);
+    }
+   
+    
+    //murid
+     public function get_all_murid()
+    {
+        $this->db->select('*');
+        $this->db->from('data_murid');
+        $this->db->join('data_kelas', 'data_kelas.id_kelas = data_murid.id_kelas');
+        return $this->db->get()->result();
+    }
+
+  
 
     public function insert_murid($data)
 
@@ -154,6 +174,12 @@ class Admin_model extends CI_Model
         return $this->db->get()->num_rows();
     }
 
+    public function get_berita_slug($slug)
+    {
+      $this->db->where('slug', $slug);
+      return $this->db->get('data_berita')->row(); 
+    }
+
     // Hafalan
       public function get_all_hafalan()
     {
@@ -231,6 +257,33 @@ class Admin_model extends CI_Model
         return $this->db->get('setor_hafalan')->result();
     }
     */
+
+    //Kelas
+    public function get_all_kelas()
+    {
+        return $this->db->get('data_kelas')->result();
+    }
+
+     public function insert_kelas($data)
+
+    {
+        $this->db->insert('data_kelas',$data);
+    }
+     public function get_kelas($id_kelas)
+    {
+        $this->db->where('id_kelas', $id_kelas);
+        return $this->db->get('data_kelas')->row();
+    }
+    public function hapus_kelas($id_kelas)
+    {
+        $this->db->where('id_kelas', $id_kelas);
+        $this->db->delete('data_kelas');
+    }
+    public function update_kelas($id_kelas, $data)
+    {
+        $this->db->where('id_kelas',$id_kelas);
+        $this->db->update('data_kelas', $data);
+    }
 
 }
 
