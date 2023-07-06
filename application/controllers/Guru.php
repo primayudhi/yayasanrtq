@@ -367,7 +367,7 @@ class Guru extends CI_Controller {
 	public function hafalan_ayat($id_murid, $id_surah, $id_setorhafalan)
 	{
 		$data_hafalan = $this->Guru_model->get_hafalan($id_setorhafalan);
-		$data_ayat = $this->Guru_model->get_ayat_by_surah($id_surah);
+		$data_ayat_murid = $this->Guru_model->get_ayat_by_surah_murid($id_surah, $id_murid);
 		$data_surah = $this->Guru_model->get_surah($id_surah);
 		$data = array(
 			'menu_home' => '',
@@ -378,14 +378,40 @@ class Guru extends CI_Controller {
 			'id_murid' => set_value('id_murid', $data_hafalan->id_murid),
 			'id_guru' => set_value('id_murid', $data_hafalan->id_guru),
 			'tanggal' => set_value('tanggal', $data_hafalan->tanggal),
+			'id_surah' => set_value('tanggal', $data_surah->id_surah),
 			'kualitas_hafalan' => set_value('kualitas_hafalan', $data_hafalan->kualitas_hafalan),
 			'keterangan' => set_value('keterangan', $data_hafalan->keterangan),
 			'data_surah' => $data_surah,
-			'data_ayat' => $data_ayat,
+			'data_ayat' => $data_ayat_murid,
 		);
 
 
 		$this->template->load('template/template_guru', 'guru/form_pilih_ayat', $data);
+	}
+
+	public function hapus_hafalan_ayat($id_surah, $id_setorhafalan, $id_ayat)
+	{
+		$id_murid = $this->Guru_model->get_hafalan($id_setorhafalan)->id_murid;
+		$id_surah = $this->Guru_model->get_ayat($id_ayat)->id_surah;
+
+		$this->Guru_model->hapus_hafalan_ayat($id_murid, $id_ayat);
+
+		redirect(site_url('Guru/hafalan_ayat/'.$id_murid.'/'.$id_surah.'/'.$id_setorhafalan.'#'.$id_ayat));
+	}
+
+	public function tambah_hafalan_ayat($id_surah, $id_setorhafalan, $id_ayat)
+	{
+		$id_murid = $this->Guru_model->get_hafalan($id_setorhafalan)->id_murid;
+		$id_surah = $this->Guru_model->get_ayat($id_ayat)->id_surah;
+		$data = array(
+			'id_setorhafalan' => $id_setorhafalan,
+			'id_murid' => $id_murid,
+			'id_ayat' => $id_ayat,
+		);
+
+		$this->Guru_model->insert_hafalan_ayat($data);
+
+		redirect(site_url('Guru/hafalan_ayat/'.$id_murid.'/'.$id_surah.'/'.$id_setorhafalan.'#'.$id_ayat));
 	}
 
 	//end hafalan

@@ -47,9 +47,13 @@
                   </div>
                   <div class="body">
                     <div class="button-demo">
-                        <?php foreach($data_ayat as $ayat){ ?>
-                            <button type="button" class="btn btn-default waves-effect"><?= $ayat->no_ayat; ?></button>
-                        <?php } ?>
+                        <?php foreach($data_ayat as $ayat){ 
+                           if($ayat->hafal == "Y") { ?>
+                              <a href="<?php echo site_url('Guru/hapus_hafalan_ayat/'.$id_surah.'/'.$id_setorhafalan.'/'.$ayat->id_ayat); ?>" class="btn btn-success waves-effect" id="<?= $ayat->id_ayat; ?>"><?= $ayat->no_ayat; ?></a>
+                           <?php } else { ?>
+                              <a href="<?php echo site_url('Guru/tambah_hafalan_ayat/'.$id_surah.'/'.$id_setorhafalan.'/'.$ayat->id_ayat); ?>" class="btn btn-default waves-effect" id="<?= $ayat->id_ayat; ?>"><?= $ayat->no_ayat; ?></a>
+                           <?php }
+                        } ?>
                     </div>
                   </div>
                   <div class="header">
