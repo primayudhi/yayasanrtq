@@ -25,17 +25,15 @@
                             <th><?php echo $id_murid; ?></th>
                         </tr>
                         <tr>
+                            <th>Kelas</th>
+                            <th><?php echo $id_kelas; ?></th>
+                        </tr>
+
+                        <tr>
                             <th>Tanggal</th>
                             <th><?php echo date('d-m-Y', strtotime($tanggal)); ?></th>
                         </tr>
-                        <tr>
-                            <th>Kualitas Hafalan</th>
-                            <th><?php echo $kualitas_hafalan; ?></th>
-                        </tr>
-                        <tr>
-                            <th>Keterangan</th>
-                            <th><?php echo $keterangan; ?></th>
-                        </tr>
+                       
                     </table>
                   </div>
                   <div class="header">

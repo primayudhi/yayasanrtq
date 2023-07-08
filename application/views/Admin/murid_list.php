@@ -5,74 +5,80 @@
       </div>
       
       <div class="row clearfix">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-xs-15 col-sm-15 col-md-15 col-lg-15">
                <div class="card">
                   <div class="header">
                         <div class="row clearfix">
                            <div class="col-xs-12 col-sm-6">
                               <h2>DAFTAR MURID</h2>
                            </div>
-                           <div class="col-xs-12 col-sm-20 align-right">
+                           <div class="col-xs-12 col-sm-6 align-right">
                            <a href="<?php echo site_url('Admin/tambah_murid_admin') ?>" class="btn btn-primary"> 
                               <i class="material-icons">add</i> <span>Tambah</span></a>
                            </div>
                         </div>
                   </div>
+
                   <div class="body">
                     <div class="table-responsive">
-                  <table id="tabelMurid" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                  <tr>
-                    <th align="center" style="width: 100px;">Nama Murid</th>
-                    <th align="center">Kelas</th>
-                    <th align="center">Tempat Lahir</th>
-                    <th align="center">Tanggal Lahir</th>
-                    <th align="center" style="width: 10px;">Jenis Kelamin</th>
-                    <th align="center" width="300px">Alamat</th>
-                    <th align="center">Foto</th>
-                    <th><center>Aksi</center></th>
-                  </tr>
-              </thead>
-                  <?php foreach($data_murid as $row) { ?>
-                    <tbody>
+                    <table class="table table-bordered table-striped" id="tabelGuru">
+                    <thead>  
                     <tr>
-                        <td><?php echo $row->nama_murid; ?></td>
-                        <td><?php echo $row->nama_kelas; ?></td>
-                        <td><?php echo $row->tempat_lahir; ?></td>
-                        <td><?php echo $row->tanggal_lahir; ?></td>
-                        <td><?php echo $row->jk; ?></td>
-                        <td><?php echo $row->alamat; ?></td>
-                        <td>
-                            <?php if ($row->foto != NULL || $row->foto != "") { ?>
-                            <img src="<?php echo base_url('uploads/fotomurid/'.$row->foto); ?>" style="height: 90px;border: 1px solid black;" />
-                            <?php } ?>
+                        <td width="150px">Nama Murid </td>
+                        <td width="50px">Kelas</td>
+                        <td width="150px">Tempat Lahir</td>
+                        <td width="250px">Tanggal Lahir</td>
+                        <td width="30px">Jenis Kelamin</td>
+                        <td>Alamat</td>
+                        <td>Foto</td>
+                        <td><center>Aksi</center></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+    <?php foreach($data_murid as $row) { ?>
+        <tr>
+            <td width="150px"><?php echo $row->nama_murid; ?></td>
+            
+            <td width="50px"><?php echo $row->nama_kelas; ?></td>
+            <td width="150px"><?php echo $row->tempat_lahir; ?></td>
+            <td width="350px"><?php echo $row->tanggal_lahir; ?></td>
+            <td><?php echo $row->jk; ?></td>
+            <td><?php echo $row->alamat; ?></td>
+            <td>
+                <?php if ($row->foto != NULL || $row->foto != "") { ?>
+                    <img src="<?php echo base_url('uploads/fotomurid/'.$row->foto); ?>" style="height: 90px;border: 1px solid black;" />
+                <?php } ?>
                 
-                        </td>
-                         <td class="text-nowrap">
-                            <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal_detail<?php echo $row->id_murid; ?>" >Details</button>
+            </td>
+            
+            
+             <td class="text-nowrap">
+                          
+                           <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal_detail<?php echo $row->id_murid; ?>" >Details</button>
                             <a href="<?php echo site_url('Admin/ubah_murid/' . $row->id_murid) ?>" class="btn btn-sm btn-warning">
                             <i class="material-icons">edit</i> <span>Edit</span></a>
-                            <a href="<?php echo site_url('Admin/hapus_murid/' . $row->id_murid) ?>" class="btn btn-sm btn-danger alert_notif">
+                            <a href="<?php echo site_url('Admin/hapus_murid/' . $row->id_murid) ?>" class="btn btn-sm btn-danger alert_notif" >
                             <i class="material-icons">clear</i> <span>Hapus</span></a>
                         </td>
-                    </tr>
-                </tbody>
-                <?php } ?>
+        </tr>
+    <?php } ?>
+</tbody>
 
-                  </table>
-                  </div>
-              </div>
+</table>
+</div>
+</div>
                </div>
             </div>
       </div>
    </div>
 </section>
-<script>
+
+
+        <script>
     document.addEventListener('DOMContentLoaded', function(){
-        $('#tabelMurid').DataTable();
+        $('#tabelGuru').DataTable();
     })
 </script>
-
 <?php foreach($data_murid as $murid){ ?>
 <!-- Modal Detail Data -->
 <div class="modal fade" id="modal_detail<?php echo $murid->id_murid; ?>"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -93,11 +99,11 @@
                             <td><?php echo $murid->nama_murid; ?></td>
                         </tr>
                          <tr>
-                            <th style="">kelas</th>
+                            <th style="">Kelas</th>
                             <td><?php echo $murid->nama_kelas; ?></td>
                         </tr>
                          <tr>
-                            <th style="">Tempat Lahir</th>
+                            <th style="">Tempat lahir</th>
                             <td><?php echo $murid->tempat_lahir; ?></td>
                         </tr>
                          <tr>
@@ -112,6 +118,7 @@
                             <th style="">Alamat</th>
                             <td><?php echo $murid->alamat; ?></td>
                         </tr>
+                        
                         <tr>
                             <th style="">Foto</th>
                             <td> <?php if ($murid->foto != NULL || $row->foto != "") { ?>
@@ -126,7 +133,7 @@
                             <th style="">Nama Ibu</th>
                             <td><?php echo $murid->nama_ibu; ?></td>
                         </tr>
-                         <tr>
+                        <tr>
                             <th style="">Nama Ayah</th>
                             <td><?php echo $murid->nama_ayah; ?></td>
                         </tr>
@@ -173,3 +180,5 @@
 <script>
 
 </script>
+
+

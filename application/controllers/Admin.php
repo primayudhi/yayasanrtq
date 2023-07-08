@@ -46,6 +46,8 @@ class Admin extends CI_Controller {
 		$data['data_murid'] = $this->Admin_model->data_murid();
 		$data['data_berita'] = $this->Admin_model->data_berita();
 		$data['setor_hafalan'] = $this->Admin_model->setor_hafalan();
+		$data['data_kelas'] = $this->Admin_model->data_kelas();
+		$data['data_admin'] = $this->Admin_model->data_admin();
 
 
 
@@ -532,6 +534,7 @@ class Admin extends CI_Controller {
 	// End Guru
 
 	// Berita 
+	// Berita 
 	public function berita_list()
 	{
 		$data = array(
@@ -746,6 +749,8 @@ class Admin extends CI_Controller {
   	echo $data;
 }
 
+// End Berita
+
 
 	// Hafalan
 public function hafalan_list()
@@ -783,6 +788,7 @@ public function hafalan_list()
 	{
 		$this->form_validation->set_rules('id_guru','Nama Guru','trim|required');
 		$this->form_validation->set_rules('id_murid','Nama Murid','trim|required');
+		$this->form_validation->set_rules('id_kelas','Kelas','trim|required');
 		$this->form_validation->set_rules('tanggal','Tanggal','trim|required');
 		$this->form_validation->set_rules('kualitas_hafalan','Kualitas Hafalan','trim|required');
 		$this->form_validation->set_rules('keterangan','Keterangan','trim|required');
@@ -806,13 +812,15 @@ public function hafalan_list()
 				'id_setorhafalan' => $setor_hafalan->id_setorhafalan,
 				'id_guru' => $setor_hafalan->id_guru,
 				'id_murid' => $setor_hafalan->id_murid,
+				'id_kelas' => $setor_hafalan->id_kelas,
 				'tanggal' => $setor_hafalan->tanggal,
 				'kualitas_hafalan' => $setor_hafalan->kualitas_hafalan,
 				'keterangan' => $setor_hafalan->keterangan,
 
 				'setor_hafalan' => $setor_hafalan,
 				'data_murid' => $this->Admin_model->get_all_murid(),
-				'data_guru' => $this->Admin_model->get_all_guru()
+				'data_guru' => $this->Admin_model->get_all_guru(),
+				'data_kelas' => $this->Admin_model->get_all_kelas()
 
 		);
 
@@ -830,6 +838,7 @@ public function hafalan_list()
 			$data = array(
 				'id_guru' => $this->input->post('id_guru'),
 				'id_murid' => $this->input->post('id_murid'),
+				'id_kelas' => $this->input->post('id_kelas'),
 				'tanggal' => $this->input->post('tanggal'),
 				'kualitas_hafalan' => $this->input->post('kualitas_hafalan'),
 				'keterangan' => $this->input->post('keterangan'),
@@ -856,11 +865,13 @@ public function hafalan_list()
 			'id_setorhafalan' => set_value('id_setoranhafalan'),
 			'id_guru' => set_value('id_guru'),
 			'id_murid' => set_value('id_murid'),
+			'id_kelas' => set_value('id_kelas'),
 			'tanggal' => set_value('tanggal'),
 			'kualitas_hafalan' => set_value('kualitas_hafalan'),
 			'keterangan' => set_value('keterangan'),
 			'data_murid' => $this->Admin_model->get_all_murid(),
-			'data_guru' => $this->Admin_model->get_all_guru()
+			'data_guru' => $this->Admin_model->get_all_guru(),
+			'data_kelas' => $this->Admin_model->get_all_kelas()
 
 		);
 
@@ -877,6 +888,7 @@ public function hafalan_list()
 			$data = array(
 				'id_guru' => $this->input->post('id_guru'),
 				'id_murid' => $this->input->post('id_murid'),
+				'id_kelas' => $this->input->post('id_kelas'),
 				'tanggal' => $this->input->post('tanggal'),
 				'kualitas_hafalan' => $this->input->post('kualitas_hafalan'),
 				'keterangan' => $this->input->post('keterangan'),

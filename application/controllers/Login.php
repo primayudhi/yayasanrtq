@@ -37,6 +37,8 @@ class Login extends CI_Controller {
 	public function aksi_login(){
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
+
+		//mengambil nama form select di halaman view login
 		$nama_table = $this->input->post('nama_table');
 		$where = array(
 			'username' => $username,

@@ -61,7 +61,7 @@
                     </li>
                        <li class="<?php echo $menu_admin ?>">
                         <a href="<?php echo site_url('Admin/admin_list') ?>">
-                            <i class="material-icons">man</i>
+                            <i class="material-icons">person_add</i>
                             <span>Admin</span>
                         </a>
                     </li>

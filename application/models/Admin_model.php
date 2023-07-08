@@ -29,6 +29,13 @@ class Admin_model extends CI_Model
         $this->db->where('id_user',$id_user);
         $this->db->update('data_admin', $data);
     }
+     public function data_admin()
+    {
+        $this->db->select('*');
+        $this->db->from('data_admin');
+
+        return $this->db->get()->num_rows();
+    }
    
     
     //murid
@@ -139,7 +146,7 @@ class Admin_model extends CI_Model
     
 
     //berita
-    public function get_all_berita()
+      public function get_all_berita()
     {
         $this->db->order_by("tanggal", "desc");
         return $this->db->get('data_berita')->result();
@@ -148,7 +155,7 @@ class Admin_model extends CI_Model
     public function get_all_berita_limit()
     {
         $this->db->order_by("tanggal", "desc");
-        $this->db->limit(6);
+        $this->db->limit(3);
         return $this->db->get('data_berita')->result();
     }
 
@@ -195,6 +202,8 @@ class Admin_model extends CI_Model
         $this->db->from('setor_hafalan');
         $this->db->join('data_guru', 'data_guru.id_guru = setor_hafalan.id_guru');
         $this->db->join('data_murid', 'data_murid.id_murid = setor_hafalan.id_murid');
+        $this->db->join('data_kelas', 'data_kelas.id_kelas = setor_hafalan.id_kelas');
+
         return $this->db->get()->result();
     }
     public function insert_hafalan($data)
@@ -291,6 +300,13 @@ class Admin_model extends CI_Model
     {
         $this->db->where('id_kelas',$id_kelas);
         $this->db->update('data_kelas', $data);
+    }
+    public function data_kelas()
+    {
+        $this->db->select('*');
+        $this->db->from('data_kelas');
+
+        return $this->db->get()->num_rows();
     }
 
 }

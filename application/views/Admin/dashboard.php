@@ -21,7 +21,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-pink hover-expand-effect">
                         <div class="icon">
-                            <i class="material-icons">person_add</i>
+                            <i class="material-icons">school</i>
                         </div>
                         <div class="content">
                             <div class="text">DATA MURID</div>
@@ -51,16 +51,46 @@
                         </div>
                     </div>
                 </div>
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-brown hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">desk</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">KELAS</div>
+                            <div class="number count-to" data-from="0" data-to="<?=$data_kelas ?>" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-red hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">person_add</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">ADMIN</div>
+                            <div class="number count-to" data-from="0" data-to="<?=$data_admin ?>" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="">
+                <center>
+                <h1>SELAMAT DATANG DI HALAMAN ADMIN</h1>
+            </center>
             </div>
             
-            <!-- #END# Widgets -->
+            <!-- #END# Widgets 
             
             <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-12">
                     <div class="card">
                         <div class="header">
-                            <div class="row clearfix">
-                                <div class="col-xs-12 col-sm-6">
+                            <div class="row clearfix">  
+                                <div class="col-xs-10 col-sm-6">
                                     <h2>DASHBOARD</h2>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 align-right">
@@ -90,5 +120,6 @@
                 </div>
             </div>
         </div>
+        -->
       
     </section>

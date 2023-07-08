@@ -84,11 +84,12 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">LAINNYA</a>
                     <div class="dropdown-menu m-0">
-                        <a href="#new" class="dropdown-item">PENDAFTARAN</a>
-                        <a href="#alamat" class="dropdown-item">ALAMAT</a>
+                        <a href="<?php echo site_url(''); ?>#new" class="dropdown-item">PENDAFTARAN</a>
+                        <a href="<?php echo site_url(''); ?>#alamat" class="dropdown-item">ALAMAT</a>
+                        <a href="<?php echo site_url(''); ?>#galeri" class="dropdown-item">GALERI</a>
                     </div>
                 </div>
-                <a href="<?php echo site_url('/Publik/berita'); ?>" class="nav-item nav-link active">BERITA</a>
+                <a href="<?php echo site_url('/Publik/berita'); ?>" class="nav-item nav-link ">BERITA</a>
                 <a href="<?php echo site_url('login'); ?>" class="nav-item nav-link active" target="blank">LOGIN</a>
             </div>
         </div>

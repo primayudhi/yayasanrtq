@@ -49,8 +49,6 @@
              <td class="text-nowrap">
                           
                            <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal_detail<?php echo $row->id_guru; ?>" >Details</button>
-                            <a href="<?php echo site_url('Guru/ubah_guru/' . $row->id_guru) ?>" class="btn btn-sm btn-warning">
-                            <i class="material-icons">edit</i> <span>Edit</span></a>
                         </td>
         </tr>
     <?php } ?>

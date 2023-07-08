@@ -12,9 +12,8 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profil</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="<?php echo site_url('Murid/logout') ?> "><i class="material-icons">input</i>Logout</a></li>
+                            <li><a href="javascript:void(0);"></a></li>
+                            <li><a href="<?php echo site_url('Murid/logout') ?> " class="alert_logout"><i class="material-icons">input</i>Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -43,7 +42,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('Murid/logout') ?> ">
+                        <a href="<?php echo site_url('Murid/logout') ?> " class="alert_logout">
                             <i class="material-icons">exit_to_app</i>
                             <span>Logout</span>
                         </a>

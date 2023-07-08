@@ -31,6 +31,8 @@ class Murid_model extends CI_Model
         $this->db->from('setor_hafalan');
         $this->db->join('data_guru', 'data_guru.id_guru = setor_hafalan.id_guru');
         $this->db->join('data_murid', 'data_murid.id_murid = setor_hafalan.id_murid');
+        $this->db->join('data_kelas', 'data_kelas.id_kelas = setor_hafalan.id_kelas');
+
         return $this->db->get()->result();
     }
      public function insert_hafalan($data)

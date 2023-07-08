@@ -23,15 +23,15 @@
                   <table class="table table-bordered table-striped" id="tabelBerita">
                 <thead>
                   <tr>
-                    <th style="width: 100px;"><center>No</center></th>
+                    <th><center>No</center></th>
                     <th style="width: 550px;"><center>Nama Kelas</center></th>
                     <th><center>Aksi</center></th>
                   </tr>
               </thead>
                     <tbody>
-                  <?php foreach($data_kelas as $row) { ?>
-                    <tr>
-                        <td><center><?php echo $row->id_kelas; ?></center></td>
+                  <?php $no=1; foreach($data_kelas as $row) { ?>
+                    <tr>    
+                        <td><center><?php echo $no++; ?></center></td>
                         <td><center><?php echo $row->nama_kelas; ?></center></td>
                         <td class="text-nowrap">
                             <center>

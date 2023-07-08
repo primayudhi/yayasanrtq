@@ -152,9 +152,9 @@
             <div class="tab-class text-center">
                 <ul class="nav nav-pills d-inline-flex justify-content-center bg-dark text-uppercase border-inner p-4 mb-5">
              
-                    <li class="nav-item">
+                   <!--  <li class="nav-item">
                         <a class="nav-link text-white" data-bs-toggle="pill" href="#tab-2">GALERI</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link text-white" data-bs-toggle="pill" href="#tab-3">KEGIATAN</a>
                     </li>
@@ -236,7 +236,8 @@
                             </div>
                         </div>
                     </div> -->
-                    <div id="tab-2" class="tab-pane fade show p-0 ">
+                    <!-- Galeri -->
+                    <!-- <div id="tab-2" class="tab-pane fade show p-0 ">
                         <div class="row g-3">
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
@@ -281,13 +282,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div id="tab-3" class="tab-pane fade show p-0 active">
                         <div class="row g-3">
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="<?php echo base_url('templaterumahtahfidz') ?>/img/kegiatan1.png" alt="" style="width: 250px; height: 185px;">
+                                        <img class="img-responsive" src="<?php echo base_url('templaterumahtahfidz') ?>/img/kegiatan1.png" alt="" style="width: 250px; height: 185px;">
                                         
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
@@ -300,7 +301,7 @@
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="<?php echo base_url('templaterumahtahfidz') ?>/img/kegiatan2.jpg" alt="" style="width: 250px; height: 185px;">
+                                        <img class="img-responsive" src="<?php echo base_url('templaterumahtahfidz') ?>/img/kegiatan2.jpg" alt="" style="width: 250px; height: 185px;">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">KEGIATAN MURID RTQ AL HASAN</h5>
@@ -311,7 +312,7 @@
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="<?php echo base_url('templaterumahtahfidz') ?>/img/kegiatan3.jpg" alt="" style="width: 250px; height: 185px;">
+                                        <img class="img-responsive" src="<?php echo base_url('templaterumahtahfidz') ?>/img/kegiatan3.jpg" alt="" style="width: 250px; height: 185px;">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">KEGIATAN BELAJAR MENGAJAR</h5>
@@ -322,7 +323,7 @@
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="<?php echo base_url('templaterumahtahfidz') ?>/img/kegiatan4.jpg" alt="" style="width: 250px; height: 185px;">
+                                        <img class="img-responsive" src="<?php echo base_url('templaterumahtahfidz') ?>/img/kegiatan4.jpg" alt="" style="width: 250px; height: 185px;">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">KEGIATAN PENYERAHAN SERTIFIKAT</h5>
@@ -333,7 +334,7 @@
                             <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="<?php echo base_url('templaterumahtahfidz') ?>/img/kegiatan5.jpg" alt="" style="width: 250px; height: 185px;">
+                                        <img class="img-responsive" src="<?php echo base_url('templaterumahtahfidz') ?>/img/kegiatan5.jpg" alt="" style="width: 250px; height: 185px;">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">KEGIATAN KARANTINA TAHFIDZ</h5>
@@ -344,7 +345,7 @@
                              <div class="col-lg-6">
                                 <div class="d-flex h-100">
                                     <div class="flex-shrink-0">
-                                        <img class="img-fluid" src="<?php echo base_url('templaterumahtahfidz') ?>/img/kegiatan6.jpg" alt="" style="width: 250px; height: 185px;">
+                                        <img class="img-responsive" src="<?php echo base_url('templaterumahtahfidz') ?>/img/kegiatan6.jpg" alt="" style="width: 250px; height: 185px;">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
                                         <h5 class="text-uppercase">PELEPASAN KARANTINA TAHFIDZ</h5>
@@ -358,10 +359,11 @@
             </div>
         </div>
     </div>
-    <!-- Products End -->
+    
 
 
     <!-- Berita -->
+   <!-- Berita -->
     <div class="container-fluid py-5" id="terkini">
         <div class="container">
             
@@ -382,7 +384,7 @@
                                 <h5 class="text-uppercase"><?php echo substr($row->judul, 0, 50) . '...'; ?></h5>
                             </a>
                             <h6 class="mb-3"><?php echo date('d-m-Y', strtotime($row->tanggal)); ?></h6>
-                            <span><?php echo substr($row->isi, 0, 100) . '...'; ?></span>
+                            <span class="mb-5"><?php echo substr($row->isi, 0, 100) . '...'; ?></span>
                         </div>
                     </div>
                 </div>
@@ -391,9 +393,9 @@
         </div>
     </div>
     
+    
 
-
-    <!-- Offer Start -->
+    <!-- Pendaftaran -->
     <div class="container-fluid  my-1 py-1" id="new">
         <div class="container py-5">
             <div class="row gx-5 justify-content-center">
@@ -416,10 +418,10 @@
             </div>
         </div>
     </div>
-    <!-- Offer End -->
+    
 
 
-    <!-- Street Start -->
+    <!-- Alamat -->
     <div class="container-fluid py-5" id="alamat">
         <div class="container">
             <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
@@ -432,4 +434,59 @@
             </div>
         </div>
     </div>
-    <!-- Testimonial End -->
+    <!-- Alamat -->
+
+    <!-- Galeri Lainnya -->
+    <div class="container-fluid py-5 " id="galeri">
+        <div class="container">
+            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+                <h2 class="text-primary font-secondary">Galeri</h2>
+                <h1 class="display-4 text-uppercase">Rumah Tahfidz Qur'an Al Hasan</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel">
+                <div class="testimonial-item bg-dark text-white border-inner p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img class="img-responsive flex-shrink-0" src="<?php echo base_url('templaterumahtahfidz') ?>/img/galeri2.jpg" style="width: 100%">
+                       
+                    </div>
+                    
+                </div>
+                <div class="testimonial-item bg-dark text-white border-inner p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img class="img-responsive flex-shrink-0" src="<?php echo base_url('templaterumahtahfidz') ?>/img/galeri3.jpg" style="width: 100%">
+                      
+                    </div>
+                  
+                </div>
+                <div class="testimonial-item bg-dark text-white border-inner p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img class="img-responsive flex-shrink-0" src="<?php echo base_url('templaterumahtahfidz') ?>/img/galeri4.jpg" style="width: 100%">
+                      
+                    </div>
+                  
+                </div>
+                <div class="testimonial-item bg-dark text-white border-inner p-4">
+                    <div class="d-flex align-items-center mb-3">
+                       <img class="img-responsive flex-shrink-0" src="<?php echo base_url('templaterumahtahfidz') ?>/img/galeri5.jpg" style="width: 100%">
+                      
+                    </div>
+
+                  
+                </div>
+                <div class="testimonial-item bg-dark text-white border-inner p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img class="img-responsive flex-shrink-0" src="<?php echo base_url('templaterumahtahfidz') ?>/img/galeri6.jpg" style="width: 100%">
+                      
+                    </div>
+                  
+                </div>
+                <div class="testimonial-item bg-dark text-white border-inner p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img class="img-responsive flex-shrink-0" src="<?php echo base_url('templaterumahtahfidz') ?>/img/galeri7.jpg" style="width: 100%">
+                      
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+    </div>

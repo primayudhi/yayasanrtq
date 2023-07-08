@@ -14,7 +14,7 @@
                               <br>
                                  <h5 class="text-uppercase"><?php echo $berita->judul; ?></h5>
                             <h6 class="mb-3"><?php echo date('d-m-Y', strtotime($berita->tanggal)); ?></h6>
-                            <span><?php echo $berita->isi; ?></span>
+                            <span class="mb-5"><?php echo $berita->isi; ?></span>
                         </div>
                     </div>
                 </div>
