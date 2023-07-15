@@ -1,7 +1,7 @@
 <section class="content">
    <div class="container-fluid">
       <div class="block-header">
-            <h2>BERITA</h2>
+            <h2>KELAS</h2>
       </div>
       
       <div class="row clearfix">

@@ -61,7 +61,7 @@
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="isi" placeholder="Masukkan Isi" class="form-control" value="<?= $isi; ?>">
+                                       <textarea class="form-control" name="isi" placeholder="Masukkan Isi" rows="3"> <?= $isi; ?></textarea>
                                     </div>
                                 </div>
                             </div>

@@ -448,6 +448,105 @@ class Admin extends CI_Controller {
 			redirect(site_url('Admin/guru_list'));
 		}
 	}
+
+// 	public function updatefoto()
+// {
+//     $id_guru=$this->input->post('id_guru');
+
+//     $lastid = $this->Admin_model->inqlastid()->lastid;
+
+//     $s_em=$this->input->post('s_em');
+//     $s_na=$this->input->post('s_na');
+
+//     $config['upload_path'] = './uploads/fotoguru';
+//     $config['allowed_types'] =     'gif|jpg|png|jpeg|jpe|pdf|doc|docx|rtf|text|txt';
+//     $config['overwrite'] = true;
+//     		$filename = 'FotoGuru-'.$lastid;
+// 			$config['file_name'] = $filename;
+//     $this->load->library('upload', $config);
+//     if ( ! $this->upload->do_upload('file_name'))
+//     {
+//         $error = array('error' => $this->upload->display_errors());
+//     }
+//     else
+//     {
+//         $upload_data=$this->upload->data();
+//         $uploadfotoguru=$upload_data['file_name'];
+//     }
+
+// $data=array('s_em'=>$s_em,'s_na'=>$s_na,'file_name'=>$uploadfotoguru);
+// $this->Admin_model->updatefotoguru($data,$id_guru);
+
+
+// 	redirect(site_url('Admin/guru_list'));
+// }
+
+
+// 	//update foto guru
+// public function updatefoto($id_guru){
+
+// 		$id_guru = $this->input->post('id_guru');
+    
+//        $config['upload_path'] = './uploads/fotoguru/';
+// 			$config['allowed_types'] = 'jpg|jpeg|png';
+// 			$config['overwrite'] = true;
+// 			$filename = 'FotoGuru-'.$lastid;
+// 			$config['file_name'] = $filename;
+
+//          $this->load->library('upload', $config);
+            
+//         if (!$this->upload->do_upload("FotoGuru-")) {
+//              $error = array('error' => $this->upload->display_errors('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>','</div>'));
+
+//             $this->load->view('Admin/ubah_guru', $error);
+//         }else{
+//            $foto=$this->upload->data('file_name');
+//            $this->db->where('id_guru', $id_guru);
+//            $this->db->update('foto',array('foto'=>$foto));
+           
+//            redirect('Admin/guru_list','refresh');
+//         }
+//        }
+   
+
+	// $id_guru = $this->input->post('id_guru');
+
+	// $lastid = $this->Admin_model->inqlastid()->lastid;
+
+	// 		//setting konfigurasi upload
+	// 		$config['upload_path'] = './uploads/fotoguru/';
+	// 		$config['allowed_types'] = 'jpg|jpeg|png';
+	// 		$config['overwrite'] = true;
+	// 		$filename = 'FotoGuru-'.$lastid;
+	// 		$config['file_name'] = $filename;
+
+	// 		//load library upload
+	// 		$this->load->library('upload', $config);
+
+	// 		$this->upload->initialize($config);
+
+	// 		if($_FILES['foto']['name'])
+	// 		{
+	// 			if($this->upload->do_upload('foto'))
+	// 			{
+	// 				$uploadfotoguru = $this->upload->data();
+	// 				$data = array(
+	// 					'namafile' =>$uploadfotoguru['file_name'],
+	// 					'type' =>$uploadfotoguru['file_type']
+	// 				);
+	// 				$foto = $data['namafile'];
+	// 				$id_guru = $this->input->post('id_guru');
+	// 				$data = array(
+	// 					'foto' => $foto,
+	// 				);
+
+	// 				$this->Admin_model->updatefoto($lastid, $data);
+	// 			}
+	// 		}
+
+	// 		redirect(site_url('Admin/guru_list'));
+	// 	}
+	
 	/*
 	public function detail_guru($id_guru){
 		$data = array(
@@ -753,7 +852,9 @@ class Admin extends CI_Controller {
 
 
 	// Hafalan
-public function hafalan_list()
+
+	// Hafalan
+		public function hafalan_list()
 	{
 		$data = array(
 			'menu_home' => '',
@@ -763,16 +864,9 @@ public function hafalan_list()
 			'menu_hafalan' => 'active',
 			'menu_kelas' => '',
 			'menu_admin' => '',
-			'setor_hafalan' =>$this->Admin_model->get_all_hafalan());
-			/*
-			if( $this->input->post('keyword')){
-				$data['setor_hafalan']=$this->Admin_model->cariDataHafalan();
-			
-			}
+			'setor_hafalan' =>$this->Admin_model->get_all_hafalan(),
 
-		;
-		*/
-
+		);
 
 		$this->template->load('template/template_admin', 'admin/hafalan_list', $data);
 	}
@@ -783,6 +877,7 @@ public function hafalan_list()
 
 		redirect(site_url('Admin/hafalan_list'));
 	}
+	
 
 	public function _ruleshafalan() 
 	{
@@ -790,8 +885,8 @@ public function hafalan_list()
 		$this->form_validation->set_rules('id_murid','Nama Murid','trim|required');
 		$this->form_validation->set_rules('id_kelas','Kelas','trim|required');
 		$this->form_validation->set_rules('tanggal','Tanggal','trim|required');
-		$this->form_validation->set_rules('kualitas_hafalan','Kualitas Hafalan','trim|required');
-		$this->form_validation->set_rules('keterangan','Keterangan','trim|required');
+		// $this->form_validation->set_rules('kualitas_hafalan','Kualitas Hafalan','trim|required');
+		// $this->form_validation->set_rules('keterangan','Keterangan','trim|required');
 
 
 	}
@@ -814,13 +909,14 @@ public function hafalan_list()
 				'id_murid' => $setor_hafalan->id_murid,
 				'id_kelas' => $setor_hafalan->id_kelas,
 				'tanggal' => $setor_hafalan->tanggal,
-				'kualitas_hafalan' => $setor_hafalan->kualitas_hafalan,
-				'keterangan' => $setor_hafalan->keterangan,
+				// 'kualitas_hafalan' => $setor_hafalan->kualitas_hafalan,
+				// 'keterangan' => $setor_hafalan->keterangan,
 
 				'setor_hafalan' => $setor_hafalan,
 				'data_murid' => $this->Admin_model->get_all_murid(),
-				'data_guru' => $this->Admin_model->get_all_guru(),
-				'data_kelas' => $this->Admin_model->get_all_kelas()
+			'data_guru' => $this->Admin_model->get_all_guru(),
+			'data_kelas' => $this->Admin_model->get_all_kelas()
+
 
 		);
 
@@ -840,8 +936,10 @@ public function hafalan_list()
 				'id_murid' => $this->input->post('id_murid'),
 				'id_kelas' => $this->input->post('id_kelas'),
 				'tanggal' => $this->input->post('tanggal'),
-				'kualitas_hafalan' => $this->input->post('kualitas_hafalan'),
-				'keterangan' => $this->input->post('keterangan'),
+				// 'kualitas_hafalan' => $this->input->post('kualitas_hafalan'),
+				// 'keterangan' => $this->input->post('keterangan'),
+
+
 			
 			);
 
@@ -867,8 +965,8 @@ public function hafalan_list()
 			'id_murid' => set_value('id_murid'),
 			'id_kelas' => set_value('id_kelas'),
 			'tanggal' => set_value('tanggal'),
-			'kualitas_hafalan' => set_value('kualitas_hafalan'),
-			'keterangan' => set_value('keterangan'),
+			// 'kualitas_hafalan' => set_value('kualitas_hafalan'),
+			// 'keterangan' => set_value('keterangan'),
 			'data_murid' => $this->Admin_model->get_all_murid(),
 			'data_guru' => $this->Admin_model->get_all_guru(),
 			'data_kelas' => $this->Admin_model->get_all_kelas()
@@ -879,29 +977,117 @@ public function hafalan_list()
 		$this->template->load('template/template_admin', 'admin/form_tambah_hafalan', $data);
 	}
 
+
 	public function tambah_hafalan_aksi()
 	{
 		$this->_ruleshafalan();
 		if($this->form_validation->run() == FALSE) {
 			$this->tambah_hafalan_admin();
 		} else{
+			$id_murid = $this->input->post('id_murid');
 			$data = array(
 				'id_guru' => $this->input->post('id_guru'),
 				'id_murid' => $this->input->post('id_murid'),
 				'id_kelas' => $this->input->post('id_kelas'),
 				'tanggal' => $this->input->post('tanggal'),
-				'kualitas_hafalan' => $this->input->post('kualitas_hafalan'),
-				'keterangan' => $this->input->post('keterangan'),
+				// 'kualitas_hafalan' => $this->input->post('kualitas_hafalan'),
+				// 'keterangan' => $this->input->post('keterangan'),
 			);
 			$this->Admin_model->insert_hafalan($data);
-			redirect(site_url('Admin/hafalan_list'));
+
+			$lastid = $this->Admin_model->inqlastid()->lastid;
+
+
+			redirect(site_url('Admin/hafalan_surah/'.$lastid));
 		}
 	}
-	//End Hafalan
+	public function hafalan_surah($id_setorhafalan)
+	{
+		
+		$data_hafalan = $this->Admin_model->get_hafalan($id_setorhafalan);
+		$data_surah = $this->Admin_model->get_all_surah();
+		$data = array(
+			'menu_home' => '',
+			'menu_guru' => '',
+			'menu_murid' => '',
+			'menu_berita' => '',
+			'menu_hafalan' => 'active',
+			'menu_kelas' => '',
+			'menu_admin' => '',
+			'id_setorhafalan' => set_value('id_setoranhafalan', $id_setorhafalan),
+			'id_murid' => set_value('id_murid', $data_hafalan->id_murid),
+			'id_guru' => set_value('id_murid', $data_hafalan->id_guru),
+			'id_kelas' => set_value('id_kelas', $data_hafalan->id_kelas),
+			'tanggal' => set_value('tanggal', $data_hafalan->tanggal),
+			// 'kualitas_hafalan' => set_value('kualitas_hafalan', $data_hafalan->kualitas_hafalan),
+			// 'keterangan' => set_value('keterangan', $data_hafalan->keterangan),
+			'data_surah' => $data_surah,
+		);
+
+
+		$this->template->load('template/template_admin', 'admin/form_pilih_surah', $data);
+	}
+
+	public function hafalan_ayat($id_murid, $id_surah, $id_setorhafalan)
+	{
+		$data_hafalan = $this->Admin_model->get_hafalan($id_setorhafalan);
+		$data_ayat_murid = $this->Admin_model->get_ayat_by_surah_murid($id_surah, $id_murid);
+		$data_surah = $this->Admin_model->get_surah($id_surah);
+		$data = array(
+			'menu_home' => '',
+			'menu_guru' => '',
+			'menu_murid' => '',
+			'menu_berita' => '',
+			'menu_hafalan' => 'active',
+			'menu_kelas' => '',
+			'menu_admin' => '',
+			'id_setorhafalan' => set_value('id_setoranhafalan', $id_setorhafalan),
+			'id_murid' => set_value('id_murid', $data_hafalan->id_murid),
+			'id_guru' => set_value('id_murid', $data_hafalan->id_guru),
+			'id_kelas' => set_value('id_kelas', $data_hafalan->id_kelas),
+			'tanggal' => set_value('tanggal', $data_hafalan->tanggal),
+			'id_surah' => set_value('tanggal', $data_surah->id_surah),
+			// 'kualitas_hafalan' => set_value('kualitas_hafalan', $data_hafalan->kualitas_hafalan),
+			// 'keterangan' => set_value('keterangan', $data_hafalan->keterangan),
+			'data_surah' => $data_surah,
+			'data_ayat' => $data_ayat_murid,
+		);
+
+
+		$this->template->load('template/template_admin', 'admin/form_pilih_ayat', $data);
+	}
+
+	public function hapus_hafalan_ayat($id_surah, $id_setorhafalan, $id_ayat)
+	{
+		$id_murid = $this->Admin_model->get_hafalan($id_setorhafalan)->id_murid;
+		$id_surah = $this->Admin_model->get_ayat($id_ayat)->id_surah;
+
+		$this->Admin_model->hapus_hafalan_ayat($id_murid, $id_ayat);
+
+		redirect(site_url('Admin/hafalan_ayat/'.$id_murid.'/'.$id_surah.'/'.$id_setorhafalan.'#'.$id_ayat));
+	}
+
+	public function tambah_hafalan_ayat($id_surah, $id_setorhafalan, $id_ayat)
+	{
+		$id_murid = $this->Admin_model->get_hafalan($id_setorhafalan)->id_murid;
+		$id_surah = $this->Admin_model->get_ayat($id_ayat)->id_surah;
+		$data = array(
+			'id_setorhafalan' => $id_setorhafalan,
+			'id_murid' => $id_murid,
+			'id_ayat' => $id_ayat,
+		);
+
+		$this->Admin_model->insert_hafalan_ayat($data);
+
+		redirect(site_url('Admin/hafalan_ayat/'.$id_murid.'/'.$id_surah.'/'.$id_setorhafalan.'#'.$id_ayat));
+	}
+
+	//end hafalan
 
 	//Logout
 	function logout(){
 		$this->session->sess_destroy();
+		$_SESSION['berhasil_keluar'] = "Anda telah berhasil keluar!!";
 		redirect(site_url('login'));
 	}
 

@@ -23,13 +23,13 @@
                   <table class="table table-bordered table-striped" id="tabelHafalan">
                     <thead>
                   <tr>
-                    <th style="width: 100px;">Guru</th>
-                    <th style="width: 150px;">Murid</th>
+                    <th style="width: 300px;">Guru</th>
+                    <th style="width: 300px;">Murid</th>
                     <th style="width: 150px;">Kelas</th>
                     <th style="width: 200px;">Tanggal</th>
-                    <th style="width: 350px;">Kualitas Hafalan</th>
-                    <th style="width: 350px;">Keterangan</th>
-                    <th>Aksi</th>
+                    <!-- <th style="width: 350px;">Kualitas Hafalan</th>
+                    <th style="width: 350px;">Keterangan</th> -->
+                    <th><center>Aksi</center></th>
                   </tr>
                     </thead>
                   <?php foreach($setor_hafalan as $row) { ?>
@@ -39,11 +39,11 @@
                         <td><?php echo $row->nama_murid; ?></td>
                         <td><?php echo $row->nama_kelas; ?></td>
                         <td><?php echo $row->tanggal; ?></td>
-                        <td><?php echo $row->kualitas_hafalan; ?></td>
-                        <td><?php echo $row->ket_hafalan; ?></td>
+                        <!-- <td><?php echo $row->kualitas_hafalan; ?></td>
+                        <td><?php echo $row->ket_hafalan; ?></td> -->
                         <td class="text-nowrap">
                             
-                             <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal_detail<?php echo $row->id_setorhafalan; ?>" >Details</button>
+                             <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal_detail<?php echo $row->id_setorhafalan; ?>" >Detail Hafalan</button>
 
                             <a href="<?php echo site_url('Guru/hapus_hafalan/' . $row->id_setorhafalan) ?>" class="btn btn-sm btn-danger alert_notif">
                             <i class="material-icons">clear</i> <span>Hapus</span></a>
@@ -70,7 +70,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header bg-success">
-        <h5 class="modal-title" id="exampleModalLabel"></i>DETAIL HAFALAN</h5>
+        <h5 class="modal-title" id="exampleModalLabel"></i>DETAIL DATA HAFALAN</h5>
       </div>
       <div class="modal-body" id="data_detail">
         <div class="modal-body">
@@ -95,14 +95,14 @@
                             <th style="">Tanggal</th>
                             <td><?php echo $setor->tanggal; ?></td>
                         </tr>
-                         <tr>
+                         <!-- <tr>
                             <th style="">Kualitas Hafalan</th>
                             <td><?php echo $setor->kualitas_hafalan; ?></td>
                         </tr>
                          <tr>
                             <th style="">Keterangan</th>
                             <td><?php echo $setor->ket_hafalan; ?></td>
-                        </tr>
+                        </tr> -->
                         
                         </tbody>
                     </thead>

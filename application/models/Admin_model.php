@@ -119,14 +119,26 @@ class Admin_model extends CI_Model
         $this->db->update('data_guru', $data);
     }
 
-    public function inqlastid()
-    {   
-       $query = $this->db->query('SELECT LAST_INSERT_ID() as lastid');
-        
-       $res = $query->row();
-       return $res;
+//     public function updatefotoguru($data,$id_guru)
+// {
+//     $this->db->where('id_guru', $id_guru);       
+//     $this->db->update('data_guru', $data);
+// }
 
-    }
+    //  public function updatefoto($id_guru, $data)
+    // {
+    //     $this->db->where('id_guru',$id_guru);
+    //     $this->db->update('data_guru', $data);
+    // }
+
+    // public function inqlastid()
+    // {   
+    //    $query = $this->db->query('SELECT LAST_INSERT_ID() as lastid');
+        
+    //    $res = $query->row();
+    //    return $res;
+
+    // }
 
     /*
     public function detail_dataguru($id_guru){
@@ -196,7 +208,8 @@ class Admin_model extends CI_Model
     }
 
     // Hafalan
-      public function get_all_hafalan()
+  
+       public function get_all_hafalan()
     {
         $this->db->select('*,setor_hafalan.keterangan AS ket_hafalan');
         $this->db->from('setor_hafalan');
@@ -206,16 +219,18 @@ class Admin_model extends CI_Model
 
         return $this->db->get()->result();
     }
-    public function insert_hafalan($data)
+     public function insert_hafalan($data)
 
     {
         $this->db->insert('setor_hafalan',$data);
     }
-     public function get_hafalan($id_setorhafalan)
+
+    public function get_hafalan($id_setorhafalan)
     {
         $this->db->where('id_setorhafalan', $id_setorhafalan);
         return $this->db->get('setor_hafalan')->row();
     }
+
     public function hapus_hafalan($id_setorhafalan)
     {
         $this->db->where('id_setorhafalan', $id_setorhafalan);
@@ -227,13 +242,105 @@ class Admin_model extends CI_Model
         $this->db->update('setor_hafalan', $data);
     }
 
-     public function setor_hafalan()
+       public function setor_hafalan()
     {
         $this->db->select('*');
         $this->db->from('setor_hafalan');
 
         return $this->db->get()->num_rows();
     }
+    public function inqlastid()
+    {   
+       $query = $this->db->query('SELECT LAST_INSERT_ID() as lastid');
+        
+       $res = $query->row();
+       return $res;
+
+    }
+
+    public function get_all_surah()
+    {
+        $this->db->select('*');
+        $this->db->from('data_surah');
+        return $this->db->get()->result();
+    }
+
+    public function get_surah($id_surah)
+    {
+        $this->db->select('*');
+        $this->db->from('data_surah');
+        $this->db->where('id_surah', $id_surah);
+        return $this->db->get()->row();
+    }
+
+    public function get_ayat($id_ayat)
+    {
+        $this->db->select('*');
+        $this->db->from('data_ayat');
+        $this->db->where('id_ayat', $id_ayat);
+        return $this->db->get()->row();
+    }
+
+    public function get_ayat_by_surah($id_surah)
+    {
+        $this->db->select('*');
+        $this->db->from('data_ayat');
+        $this->db->join('data_surah', 'data_surah.id_surah = data_ayat.id_surah');
+        $this->db->where('data_ayat.id_surah', $id_surah);
+        return $this->db->get()->result();
+    }
+     public function get_ayat_by_hafalan($id_setorhafalan)
+    {
+        $this->db->select('*');
+        $this->db->from('data_hafalanayat');
+        $this->db->join('data_ayat', 'data_ayat.id_ayat = data_hafalanayat.id_ayat');
+        $this->db->join('data_surah', 'data_surah.id_surah = data_ayat.id_surah');
+        $this->db->where('data_hafalanayat.id_setorhafalan', $id_setorhafalan);
+        return $this->db->get()->result();
+    }
+
+    public function get_ayat_by_surah_murid($id_surah, $id_murid)
+    {
+        $query = $this->db->query("SELECT *,
+                IF(data_ayat.id_ayat IN 
+                (SELECT data_hafalanayat.id_ayat FROM data_hafalanayat, setor_hafalan WHERE 
+                    data_hafalanayat.id_setorhafalan = setor_hafalan.id_setorhafalan AND setor_hafalan.id_murid = $id_murid), 'Y', 'T') as hafal 
+                FROM data_ayat
+                JOIN data_surah ON data_surah.id_surah = data_ayat.id_surah
+                where data_ayat.id_surah = $id_surah");
+        
+       $res = $query->result();
+       return $res;
+    }
+
+    public function surah_by_murid($id_murid, $id_surah)
+    {   
+       $query = $this->db->query('SELECT *,
+                (SELECT COUNT(id_ayat) FROM data_ayat WHERE s.id_surah = data_ayat.id_surah
+                AND data_ayat.id_ayat IN (SELECT data_hafalanayat.id_ayat FROM data_hafalanayat, setor_hafalan WHERE 
+                data_hafalanayat.id_setorhafalan = setor_hafalan.id_setorhafalan
+                AND setor_hafalan.id_murid = '.$id_murid.')) as jlh_sdh,
+                ROUND((SELECT 100 * jlh_sdh / jumlah_ayat),0) as persen
+                FROM data_surah s where s.id_surah = '.$id_surah.'');
+        
+       $res = $query->row();
+       return $res;
+
+    }
+
+    public function hapus_hafalan_ayat($id_murid, $id_ayat)
+    {
+        $this->db->where('id_murid', $id_murid);
+        $this->db->where('id_ayat', $id_ayat);
+        $this->db->delete('data_hafalanayat');
+    }
+
+    public function insert_hafalan_ayat($data)
+    {
+        $this->db->insert('data_hafalanayat',$data);
+    }
+
+    //end hafalan
 
     //search murid
 
@@ -310,5 +417,7 @@ class Admin_model extends CI_Model
     }
 
 }
+
+
 
 ?>

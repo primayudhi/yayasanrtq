@@ -73,6 +73,29 @@
             });
         </script>
 
+        <!-- di bawah ini adalah script untuk konfirmasi keluar dengan sweet alert  -->
+        <script>
+            $('.alert_logout').on('click',function(){
+                var getLink = $(this).attr('href');
+                Swal.fire({
+                    title: "Apakah Anda Yakin Ingin Keluar?",            
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Ya',
+                    cancelButtonColor: '#3085d6',
+                    cancelButtonText: "Batal"
+                
+                }).then(result => {
+                    //jika klik ya maka arahkan ke proses.php
+                    if(result.isConfirmed){
+                        window.location.href = getLink
+                    }
+                })
+                return false;
+            });
+        </script>
+
         <!-- Alert Modal Simpan Data -->
         <script type="text/javascript">
 
@@ -95,6 +118,29 @@
         }
 
     </script>
+
+    <script>
+        <?php
+        if (isset($_SESSION['berhasil_keluar']) && $_SESSION['berhasil_keluar'] <> '') {
+            echo "swal({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '$_SESSION[berhasil_keluar]',
+            buttons: false,
+            timer: 3000
+        })";
+        }
+        $_SESSION['berhasil_keluar'] = '';
+        ?>
+    </script>
+
+    <script src="assets/dist/js/sweetalert.min.js"></script>
+    <!-- jQuery 3 -->
+    <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- -->
+    <script src="assets/json/lottie-player.js"></script>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
