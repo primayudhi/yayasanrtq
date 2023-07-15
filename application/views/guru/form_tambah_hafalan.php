@@ -24,14 +24,8 @@
                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                             <div class="form-group">
                                 <input type="hidden" name="id_setorhafalan" value="<?= $id_setorhafalan; ?>" />
-                                <select class="form-control show-tick" name="id_guru">
-                                    <?php
-                                        foreach($data_guru as $guru){ ?>
-                                            <option value='<?php echo $guru->id_guru ?>'>
-                                                <?php echo $guru->nama_guru ?>
-                                            </option>
-                                        <?php } ?>
-                                </select>
+                                <input type="hidden" name="id_guru" value="<?= $id_guru; ?>" >
+                                <input type="text" name="nama_guru" class="form-control" value="<?= $nama_guru; ?>" readonly >
                             </div>
                             
                         </div>

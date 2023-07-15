@@ -212,12 +212,13 @@ class Guru extends CI_Controller {
 	// Hafalan
 		public function hafalan_list()
 	{
+		$username = $this->session->userdata('nama');
 		$data = array(
 			'menu_home' => '',
 			'menu_guru' => '',
 			'menu_murid' => '',
 			'menu_hafalan' => 'active',
-			'setor_hafalan' =>$this->Guru_model->get_all_hafalan(),
+			'setor_hafalan' =>$this->Guru_model->get_all_hafalan_by_username($username),
 
 		);
 
@@ -301,6 +302,9 @@ class Guru extends CI_Controller {
 
 	public function tambah_hafalan_guru()
 	{
+		$username = $this->session->userdata('nama');
+		$id_guru = $this->Guru_model->get_guru_by_username($username)->id_guru;
+		$nama_guru = $this->Guru_model->get_guru_by_username($username)->nama_guru;
 		$data = array(
 			'menu_home' => '',
 			'menu_guru' => '',
@@ -308,10 +312,11 @@ class Guru extends CI_Controller {
 			'menu_hafalan' => 'active',
 			'action' => site_url('Guru/tambah_hafalan_aksi'),
 			'id_setorhafalan' => set_value('id_setoranhafalan'),
-			'id_guru' => set_value('id_guru'),
+			'id_guru' => set_value('id_guru', $id_guru),
 			'id_murid' => set_value('id_murid'),
 			'id_kelas' => set_value('id_kelas'),
 			'tanggal' => set_value('tanggal'),
+			'nama_guru' => $nama_guru,
 			// 'kualitas_hafalan' => set_value('kualitas_hafalan'),
 			// 'keterangan' => set_value('keterangan'),
 			'data_murid' => $this->Guru_model->get_all_murid(),

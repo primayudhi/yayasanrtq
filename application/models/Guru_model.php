@@ -30,6 +30,12 @@ class Guru_model extends CI_Model
         return $this->db->get()->num_rows();
     }
 
+    public function get_guru_by_username($username)
+    {
+        $this->db->where('username', $username);
+        return $this->db->get('data_guru')->row();
+    }
+
   // End Guru
 
   //murid
@@ -58,6 +64,18 @@ class Guru_model extends CI_Model
         $this->db->join('data_guru', 'data_guru.id_guru = setor_hafalan.id_guru');
         $this->db->join('data_murid', 'data_murid.id_murid = setor_hafalan.id_murid');
         $this->db->join('data_kelas', 'data_kelas.id_kelas = setor_hafalan.id_kelas');
+
+        return $this->db->get()->result();
+    }
+
+    public function get_all_hafalan_by_username($username)
+    {
+        $this->db->select('*,setor_hafalan.keterangan AS ket_hafalan');
+        $this->db->from('setor_hafalan');
+        $this->db->join('data_guru', 'data_guru.id_guru = setor_hafalan.id_guru');
+        $this->db->join('data_murid', 'data_murid.id_murid = setor_hafalan.id_murid');
+        $this->db->join('data_kelas', 'data_kelas.id_kelas = setor_hafalan.id_kelas');
+        $this->db->where('data_guru.username', $username);
 
         return $this->db->get()->result();
     }

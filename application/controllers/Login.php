@@ -47,10 +47,12 @@ class Login extends CI_Controller {
 		$cek = $this->Login_model->cek_login($nama_table,$where)->num_rows();
 		if($cek > 0){
 			// echo $cek;
- 
+			$data_login = $this->Login_model->cek_login($nama_table,$where)->row();
+			$hak_akses = $data_login->hak_akses;
 			$data_session = array(
 				'nama' => $username,
-				'status' => "login"
+				'status' => "login",
+				'hak_akses' => $hak_akses
 				);
  
 			$this->session->set_userdata($data_session);
