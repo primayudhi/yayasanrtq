@@ -132,6 +132,16 @@ class Guru_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function get_ayat_by_hafalan($id_setorhafalan)
+    {
+        $this->db->select('*');
+        $this->db->from('data_hafalanayat');
+        $this->db->join('data_ayat', 'data_ayat.id_ayat = data_hafalanayat.id_ayat');
+        $this->db->join('data_surah', 'data_surah.id_surah = data_ayat.id_surah');
+        $this->db->where('data_hafalanayat.id_setorhafalan', $id_setorhafalan);
+        return $this->db->get()->result();
+    }
+
     public function get_ayat_by_surah_murid($id_surah, $id_murid)
     {
         $query = $this->db->query("SELECT *,

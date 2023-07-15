@@ -64,41 +64,73 @@
     })
 </script>
 
-
-<!-- <?php foreach($data_hafalanayat as $hafalan){ ?> -->
-<!-- Modal Detail Data 
-<div class="modal fade" id="modal_detail<?php echo $hafalan->id_setorhafalan; ?>"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<?php foreach($setor_hafalan as $setor){ ?>
+<!-- Modal Detail Data -->
+<div class="modal fade" id="modal_detail<?php echo $setor->id_setorhafalan; ?>" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header bg-success">
-        <h5 class="modal-title" id="exampleModalLabel"></i>DETAIL DATA HAFALAN</h5>
+        <h5 class="modal-title" id="exampleModalLabel"></i>DETAIL HAFALAN</h5>
       </div>
       <div class="modal-body" id="data_detail">
         <div class="modal-body">
             <div class="row">
                 <div class="col-sm">
-                       <table class="table table-bordered table-striped">
+                  <table class="table table-bordered table-striped">
                     <thead>
                         <tbody>
                         <tr>
-                            <th style="" >Nama Surah</th>
-                            <td><?php echo $hafalan->nama_surah; ?></td>
+                            <th style="" >Nama Guru</th>
+                            <td><?php echo $setor->nama_guru; ?></td>
                         </tr>
                          <tr>
-                            <th style="">Ayat</th>
-                            <td><?php echo $hafalan->nama_ayat; ?></td>
+                            <th style="">Nama Murid</th>
+                            <td><?php echo $setor->nama_murid; ?></td>
+                        </tr>
+                         <tr>
+                            <th style="">Kelas</th>
+                            <td><?php echo $setor->nama_kelas; ?></td>
+                        </tr>
+                         <tr>
+                            <th style="">Tanggal</th>
+                            <td><?php echo $setor->tanggal; ?></td>
                         </tr>
                          <tr>
                             <th style="">Kualitas Hafalan</th>
-                            <td><?php echo $hafalan->kualitas_hafalan; ?></td>
+                            <td><?php echo $setor->kualitas_hafalan; ?></td>
                         </tr>
                          <tr>
                             <th style="">Keterangan</th>
-                            <td><?php echo $hafalan->keterangan; ?></td>
+                            <td><?php echo $setor->ket_hafalan; ?></td>
                         </tr>
-                    </tbody>
-                </thead>
-                </table>
+                        
+                        </tbody>
+                    </thead>
+                  </table>
+                        
+                </div>
+                <div class="col-sm">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                        <tbody>
+                        <tr>
+                            <th style="" >No.</th>
+                            <th style="" >Surah</th>
+                            <th style="" >Ayat</th>
+                        </tr>
+                        <?php 
+                        $no = 1;
+                        $data_hafalan = $this->Guru_model->get_ayat_by_hafalan($setor->id_setorhafalan);
+                        foreach($data_hafalan as $hafalan) { ?>
+                          <tr>
+                            <td><?= $no; ?></td>
+                            <td><?= $hafalan->nama_surah; ?></td>
+                            <td><?= $hafalan->id_ayat; ?></td>
+                          </tr>
+                        <?php $no++; } ?>
+                        </tbody>
+                    </thead>
+                  </table>
                         
                 </div>
             </div>
@@ -110,8 +142,4 @@
     </div>
   </div>
 </div>
-<?php } ?> -->
-
-<script>
-
-</script>
+<?php } ?>
