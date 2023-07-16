@@ -96,11 +96,11 @@
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input name="jk" type="radio" class="with-gap" value="L" id="radio_jk_l"
-                                        <?php if($jk == 'L') { echo "checked"; } ?>/>
+                                        <input name="jk" type="radio" class="with-gap" value="Laki-laki" id="radio_jk_l"
+                                        <?php if($jk == 'Laki-laki') { echo "checked"; } ?>/>
                                         <label for="radio_jk_l">Laki - laki</label>
-                                        <input name="jk" type="radio" class="with-gap" value="P" id="radio_jk_p" 
-                                        <?php if($jk == 'P') { echo "checked"; } ?>/>
+                                        <input name="jk" type="radio" class="with-gap" value="Perempuan" id="radio_jk_p" 
+                                        <?php if($jk == 'Perempuan') { echo "checked"; } ?>/>
                                         <label for="radio_jk_p">Perempuan</label>
                                     </div>
                                 </div>

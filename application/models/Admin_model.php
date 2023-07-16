@@ -119,34 +119,7 @@ class Admin_model extends CI_Model
         $this->db->update('data_guru', $data);
     }
 
-//     public function updatefotoguru($data,$id_guru)
-// {
-//     $this->db->where('id_guru', $id_guru);       
-//     $this->db->update('data_guru', $data);
-// }
 
-    //  public function updatefoto($id_guru, $data)
-    // {
-    //     $this->db->where('id_guru',$id_guru);
-    //     $this->db->update('data_guru', $data);
-    // }
-
-    // public function inqlastid()
-    // {   
-    //    $query = $this->db->query('SELECT LAST_INSERT_ID() as lastid');
-        
-    //    $res = $query->row();
-    //    return $res;
-
-    // }
-
-    /*
-    public function detail_dataguru($id_guru){
-
-
-         return $this->db->get('data_guru')->result();
-    }
-    */
 
     public function data_guru()
     {

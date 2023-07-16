@@ -136,22 +136,8 @@
                             <th style="">Masa Kerja</th>
                             <td><?php echo $guru->masa_kerja; ?></td>
                         </tr>
-                        <tr>
-                            <th style="">Username</th>
-                            <td><?php echo $guru->username; ?></td>
-                        </tr>
-                        <tr>
-                            <th style="">Password</th>
-                            <td><?php echo $guru->password; ?></td>
-                        </tr>
-                        <tr>
-                            <th style="">Hak Akses</th>
-                            <td><?php echo $guru->hak_akses; ?></td>
-                        </tr>
-                        <tr>
-                            <th style="">Aktif</th>
-                            <td><?php echo $guru->aktif; ?></td>
-                        </tr>
+                      
+                        
                     </tbody>
                 </thead>
                 </table>

@@ -145,10 +145,7 @@
                             <th style="">Password</th>
                             <td><?php echo $murid->password; ?></td>
                         </tr>
-                        <tr>
-                            <th style="">Hak Akses</th>
-                            <td><?php echo $murid->hak_akses; ?></td>
-                        </tr>
+                     
                         <tr>
                             <th style="">Aktif</th>
                             <td><?php echo $murid->aktif; ?></td>

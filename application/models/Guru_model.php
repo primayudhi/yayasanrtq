@@ -35,6 +35,14 @@ class Guru_model extends CI_Model
         $this->db->where('username', $username);
         return $this->db->get('data_guru')->row();
     }
+    public function get_all_guru_by_username($username)
+    {
+        $this->db->select('*');
+        $this->db->from('data_guru');
+        $this->db->where('data_guru.username', $username);
+
+        return $this->db->get()->result();
+    }
 
   // End Guru
 
@@ -199,6 +207,8 @@ class Guru_model extends CI_Model
     {
         $this->db->insert('data_hafalanayat',$data);
     }
+
+    
 
     //Kelas
     public function get_all_kelas()

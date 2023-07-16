@@ -82,6 +82,9 @@ class Admin extends CI_Controller {
 		;
 
 		$this->template->load('template/template_admin', 'admin/murid_list', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	
@@ -314,6 +317,7 @@ class Admin extends CI_Controller {
 			'data_guru' =>$this->Admin_model->get_all_guru());
 			if( $this->input->post('keyword')){
 				$data['data_guru']=$this->Admin_model->cariDataGuru();
+
 			
 			}
 
@@ -321,6 +325,9 @@ class Admin extends CI_Controller {
 		
 
 		$this->template->load('template/template_admin', 'admin/guru_list', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 	public function tambah_guru_admin()
 	{
@@ -355,6 +362,9 @@ class Admin extends CI_Controller {
 
 
 		$this->template->load('template/template_admin', 'admin/form_tambah_guru', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function hapus_guru($id_guru)
@@ -449,117 +459,7 @@ class Admin extends CI_Controller {
 		}
 	}
 
-// 	public function updatefoto()
-// {
-//     $id_guru=$this->input->post('id_guru');
 
-//     $lastid = $this->Admin_model->inqlastid()->lastid;
-
-//     $s_em=$this->input->post('s_em');
-//     $s_na=$this->input->post('s_na');
-
-//     $config['upload_path'] = './uploads/fotoguru';
-//     $config['allowed_types'] =     'gif|jpg|png|jpeg|jpe|pdf|doc|docx|rtf|text|txt';
-//     $config['overwrite'] = true;
-//     		$filename = 'FotoGuru-'.$lastid;
-// 			$config['file_name'] = $filename;
-//     $this->load->library('upload', $config);
-//     if ( ! $this->upload->do_upload('file_name'))
-//     {
-//         $error = array('error' => $this->upload->display_errors());
-//     }
-//     else
-//     {
-//         $upload_data=$this->upload->data();
-//         $uploadfotoguru=$upload_data['file_name'];
-//     }
-
-// $data=array('s_em'=>$s_em,'s_na'=>$s_na,'file_name'=>$uploadfotoguru);
-// $this->Admin_model->updatefotoguru($data,$id_guru);
-
-
-// 	redirect(site_url('Admin/guru_list'));
-// }
-
-
-// 	//update foto guru
-// public function updatefoto($id_guru){
-
-// 		$id_guru = $this->input->post('id_guru');
-    
-//        $config['upload_path'] = './uploads/fotoguru/';
-// 			$config['allowed_types'] = 'jpg|jpeg|png';
-// 			$config['overwrite'] = true;
-// 			$filename = 'FotoGuru-'.$lastid;
-// 			$config['file_name'] = $filename;
-
-//          $this->load->library('upload', $config);
-            
-//         if (!$this->upload->do_upload("FotoGuru-")) {
-//              $error = array('error' => $this->upload->display_errors('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>','</div>'));
-
-//             $this->load->view('Admin/ubah_guru', $error);
-//         }else{
-//            $foto=$this->upload->data('file_name');
-//            $this->db->where('id_guru', $id_guru);
-//            $this->db->update('foto',array('foto'=>$foto));
-           
-//            redirect('Admin/guru_list','refresh');
-//         }
-//        }
-   
-
-	// $id_guru = $this->input->post('id_guru');
-
-	// $lastid = $this->Admin_model->inqlastid()->lastid;
-
-	// 		//setting konfigurasi upload
-	// 		$config['upload_path'] = './uploads/fotoguru/';
-	// 		$config['allowed_types'] = 'jpg|jpeg|png';
-	// 		$config['overwrite'] = true;
-	// 		$filename = 'FotoGuru-'.$lastid;
-	// 		$config['file_name'] = $filename;
-
-	// 		//load library upload
-	// 		$this->load->library('upload', $config);
-
-	// 		$this->upload->initialize($config);
-
-	// 		if($_FILES['foto']['name'])
-	// 		{
-	// 			if($this->upload->do_upload('foto'))
-	// 			{
-	// 				$uploadfotoguru = $this->upload->data();
-	// 				$data = array(
-	// 					'namafile' =>$uploadfotoguru['file_name'],
-	// 					'type' =>$uploadfotoguru['file_type']
-	// 				);
-	// 				$foto = $data['namafile'];
-	// 				$id_guru = $this->input->post('id_guru');
-	// 				$data = array(
-	// 					'foto' => $foto,
-	// 				);
-
-	// 				$this->Admin_model->updatefoto($lastid, $data);
-	// 			}
-	// 		}
-
-	// 		redirect(site_url('Admin/guru_list'));
-	// 	}
-	
-	/*
-	public function detail_guru($id_guru){
-		$data = array(
-			'menu_home' => '',
-			'menu_guru' => 'active',
-			'menu_murid' => '',
-			'menu_berita' => '',
-			'menu_hafalan' => '',
-			'data_guru' =>$this->Admin_model->detail_dataguru());
-
-		$this->template->load('template/template_admin', 'admin/detail_guru', $data);
-	}
-	*/
 
 	public function ubah_guru($id_guru)
 	{
@@ -592,10 +492,13 @@ class Admin extends CI_Controller {
 				'password'=> $data_guru->password,
 				'hak_akses' => $data_guru->hak_akses,
 				'aktif' => $data_guru->aktif,
-				'data_guru' => $data_guru
+				'data_guru' => $this->Admin_model->get_all_guru(),
 		);
 
 		$this->template->load('template/template_admin', 'Admin/form_tambah_guru', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function proses_ubah_guru()
@@ -633,7 +536,7 @@ class Admin extends CI_Controller {
 	// End Guru
 
 	// Berita 
-	// Berita 
+	 
 	public function berita_list()
 	{
 		$data = array(
@@ -655,6 +558,9 @@ class Admin extends CI_Controller {
 		
 
 		$this->template->load('template/template_admin', 'Admin/berita_list', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 	public function tambah_berita_admin()
 	{
@@ -676,6 +582,9 @@ class Admin extends CI_Controller {
 		);
 
 		$this->template->load('template/template_admin', 'admin/form_tambah_berita', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function hapus_berita($id_berita)
@@ -793,6 +702,9 @@ class Admin extends CI_Controller {
 		);
 
 		$this->template->load('template/template_admin', 'Admin/form_tambah_berita', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function proses_ubah_berita()
@@ -869,6 +781,9 @@ class Admin extends CI_Controller {
 		);
 
 		$this->template->load('template/template_admin', 'admin/hafalan_list', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 		public function hapus_hafalan($id_setorhafalan)
@@ -921,6 +836,9 @@ class Admin extends CI_Controller {
 		);
 
 		$this->template->load('template/template_admin', 'Admin/form_tambah_hafalan', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function proses_ubah_hafalan()
@@ -975,6 +893,9 @@ class Admin extends CI_Controller {
 
 
 		$this->template->load('template/template_admin', 'admin/form_tambah_hafalan', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 
@@ -1026,6 +947,9 @@ class Admin extends CI_Controller {
 
 
 		$this->template->load('template/template_admin', 'admin/form_pilih_surah', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function hafalan_ayat($id_murid, $id_surah, $id_setorhafalan)
@@ -1055,6 +979,9 @@ class Admin extends CI_Controller {
 
 
 		$this->template->load('template/template_admin', 'admin/form_pilih_ayat', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function hapus_hafalan_ayat($id_surah, $id_setorhafalan, $id_ayat)
@@ -1130,6 +1057,9 @@ class Admin extends CI_Controller {
 		;
 
 		$this->template->load('template/template_admin', 'admin/admin_list', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function _rulesadmin() 
@@ -1168,6 +1098,9 @@ class Admin extends CI_Controller {
 		);
 
 		$this->template->load('template/template_admin', 'Admin/form_tambah_admin', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function proses_ubah_admin()
@@ -1215,6 +1148,9 @@ class Admin extends CI_Controller {
 
 
 		$this->template->load('template/template_admin', 'admin/form_tambah_admin', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function tambah_admin_aksi()
@@ -1264,6 +1200,9 @@ class Admin extends CI_Controller {
 		;
 
 		$this->template->load('template/template_admin', 'admin/kelas_list', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function _ruleskelas() 
@@ -1292,6 +1231,9 @@ class Admin extends CI_Controller {
 		);
 
 		$this->template->load('template/template_admin', 'Admin/form_tambah_kelas', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function proses_ubah_kelas()
@@ -1331,6 +1273,9 @@ class Admin extends CI_Controller {
 
 
 		$this->template->load('template/template_admin', 'admin/form_tambah_kelas', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function tambah_kelas_aksi()

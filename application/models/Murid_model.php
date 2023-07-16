@@ -12,6 +12,16 @@ class Murid_model extends CI_Model
         $this->db->select('*');
         $this->db->from('data_murid');
         $this->db->join('data_kelas', 'data_kelas.id_kelas = data_murid.id_kelas');
+
+        return $this->db->get()->result();
+    }
+    public function get_all_murid_by_username($username)
+    {
+        $this->db->select('*');
+        $this->db->from('data_murid');
+       $this->db->join('data_kelas', 'data_kelas.id_kelas = data_murid.id_kelas');
+        $this->db->where('data_murid.username', $username);
+
         return $this->db->get()->result();
     }
 
@@ -72,6 +82,23 @@ class Murid_model extends CI_Model
         $this->db->join('data_ayat', 'data_ayat.id_ayat = data_hafalanayat.id_ayat');
         $this->db->join('data_surah', 'data_surah.id_surah = data_ayat.id_surah');
         $this->db->where('data_hafalanayat.id_setorhafalan', $id_setorhafalan);
+        return $this->db->get()->result();
+    }
+
+      public function get_murid_by_username($username)
+    {
+        $this->db->where('username', $username);
+        return $this->db->get('data_murid')->row();
+    }
+     public function get_all_hafalan_by_username($username)
+    {
+        $this->db->select('*,setor_hafalan.keterangan AS ket_hafalan');
+        $this->db->from('setor_hafalan');
+        $this->db->join('data_guru', 'data_guru.id_guru = setor_hafalan.id_guru');
+        $this->db->join('data_murid', 'data_murid.id_murid = setor_hafalan.id_murid');
+        $this->db->join('data_kelas', 'data_kelas.id_kelas = setor_hafalan.id_kelas');
+        $this->db->where('data_murid.username', $username);
+
         return $this->db->get()->result();
     }
 

@@ -29,7 +29,7 @@ class Murid extends CI_Controller {
 	{
 		$data = array(
 			'menu_home' => 'active',
-			'menu_guru' => '',
+			
 			'menu_murid' => '',
 			'menu_hafalan' => '',
 		);
@@ -39,6 +39,9 @@ class Murid extends CI_Controller {
 		$data['setor_hafalan'] = $this->Murid_model->setor_hafalan();
 
 		$this->template->load('template/template_murid', 'murid/dashboard', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	// Murid
@@ -46,7 +49,7 @@ class Murid extends CI_Controller {
 	{
 		$data = array(
 			'menu_home' => '',
-			'menu_guru' => '',
+			
 			'menu_murid' => 'active',
 			'menu_hafalan' => '',
 			'data_murid' =>$this->Murid_model->get_all_murid());
@@ -60,22 +63,49 @@ class Murid extends CI_Controller {
 		
 
 		$this->template->load('template/template_murid', 'murid/murid_list', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
+	}
+
+
+		public function profil_murid()
+	{
+		$username = $this->session->userdata('nama');
+		$data = array(
+			'menu_home' => '',
+			'menu_murid' => '',
+			'menu_hafalan' => '',
+			'data_murid' =>$this->Murid_model->get_all_murid(),
+			'data_murid' =>$this->Murid_model->get_all_murid_by_username($username),
+
+		);
+
+		$this->template->load('template/template_murid', 'murid/profil_murid', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 	//End Murid
 
 	// Hafalan
 		public function hafalan_list()
 	{
+		$username = $this->session->userdata('nama');
 		$data = array(
 			'menu_home' => '',
-			'menu_guru' => '',
+			
 			'menu_murid' => '',
 			'menu_hafalan' => 'active',
 			'setor_hafalan' =>$this->Murid_model->get_all_hafalan(),
+			'setor_hafalan' =>$this->Murid_model->get_all_hafalan_by_username($username),
 
 		);
 
 		$this->template->load('template/template_murid', 'murid/hafalan_list', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	//end hafalan

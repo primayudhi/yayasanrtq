@@ -40,6 +40,9 @@ class Guru extends CI_Controller {
 		$data['setor_hafalan'] = $this->Guru_model->setor_hafalan();
 
 		$this->template->load('template/template_guru', 'guru/dashboard', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 	// Guru 
 	public function guru_list()
@@ -60,130 +63,29 @@ class Guru extends CI_Controller {
 	
 
 		$this->template->load('template/template_guru', 'guru/guru_list', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
-	// public function tambah_guru_guru()
-	// {
-	// 	$data = array(
-	// 		'menu_home' => '',
-	// 		'menu_guru' => 'active',
-	// 		'menu_murid' => '',
-	// 		'menu_berita' => '',
-	// 		'menu_hafalan' => '',
-	// 		'action' => site_url('Admin/tambah_guru_aksi'),
-	// 		'id_guru' => set_value('id_guru'),
-	// 		'nama_guru' => set_value('nama_guru'),
-	// 		'nik_guru' => set_value('nik_guru'),
-	// 		'nip_guru' => set_value('nip_guru'),
-	// 		'tempat_lahir' => set_value('tempat_lahir'),
-	// 		'tanggal_lahir' => set_value('tanggal_lahir'),
-	// 		'alamat' => set_value('alamat'),
-	// 		'jk' => set_value('jk'),
-	// 		'foto' => set_value('foto'),
-	// 		'jabatan' => set_value('jabatan'),
-	// 		'no_telepon' => set_value('no_telepon'),
-	// 		'email' => set_value('email'),
-	// 		'pendidikan_terakhir' => set_value('pendidikan_terakhir'),
-	// 		'masa_kerja' => set_value('masa_kerja'),
-	// 		'username' => set_value('username'),
-	// 		'password' => set_value('password'),
-	// 		'aktif' => set_value('aktif'),
-	// 	);
+	public function profil_guru()
+	{
+		$username = $this->session->userdata('nama');
+		$data = array(
+			'menu_home' => '',
+			'menu_guru' => '',
+			'menu_murid' => '',
+			'menu_hafalan' => '',
+			'data_guru' =>$this->Guru_model->get_all_guru(),
+			'data_guru' =>$this->Guru_model->get_all_guru_by_username($username),
 
+		);
 
-	// 	$this->template->load('template/template_guru', 'guru/form_tambah_guru', $data);
-	// }
-
-	// public function _rulesguru() 
-	// {
-	// 	$this->form_validation->set_rules('nama_guru','Nama Guru','trim|required');
-	// 	$this->form_validation->set_rules('nik_guru','Nik Guru','trim|required');
-	// 	$this->form_validation->set_rules('nip_guru','Nip Guru','trim|required');
-	// 	$this->form_validation->set_rules('tempat_lahir','Tempat Lahir','trim|required');
-	// 	$this->form_validation->set_rules('tanggal_lahir','Tanggal Lahir','trim|required');
-	// 	$this->form_validation->set_rules('alamat','Alamat Guru','trim|required');
-	// 	$this->form_validation->set_rules('jk','Jenis Kelamin','trim|required');
-	// 	$this->form_validation->set_rules('foto','Upload Foto Guru','trim|required');
-	// 	$this->form_validation->set_rules('jabatan','Jabatan','trim|required');
-	// 	$this->form_validation->set_rules('no_telepon','No Telepon','trim|required');
-	// 	$this->form_validation->set_rules('email','Email','trim|required');
-	// 	$this->form_validation->set_rules('pendidikan_terakhir','Pendidikan Terakhir','trim|required');
-	// 	$this->form_validation->set_rules('masa_kerja','Masa Kerja','trim|required');
-	// 	$this->form_validation->set_rules('username','Username','trim|required');
-	// 	$this->form_validation->set_rules('password','Password Guru','trim|required');
-	// 	$this->form_validation->set_rules('hak_akses','Hak Akses','trim|required');
-	// 	$this->form_validation->set_rules('aktif','Status Aktif','trim|required');
-
-	// }
-
-	
-
-	// public function ubah_guru($id_guru)
-	// {
-	// 	$data_guru = $this->Guru_model->get_guru($id_guru);
-	// 	$data = array(
-	// 			'menu_home' => '',
-	// 			'menu_guru' => 'active',
-	// 			'menu_murid' => '',
-	// 			'menu_hafalan' => '',
-	// 			'judul' => 'UBAH GURU',
-	// 			'action' => site_url('Guru/proses_ubah_guru'),
-	// 			'id_guru' => $data_guru->id_guru,
-	// 			'nama_guru' => $data_guru->nama_guru,
-	// 			'nik_guru' => $data_guru->nik_guru,
-	// 			'nip_guru' => $data_guru->nip_guru,
-	// 			'tempat_lahir' => $data_guru->tempat_lahir,
-	// 			'tanggal_lahir' => $data_guru->tanggal_lahir,
-	// 			'alamat' => $data_guru->alamat,
-	// 			'jk' => $data_guru->jk,
-	// 			'foto' => $data_guru->foto,
-	// 			'jabatan' => $data_guru->jabatan,
-	// 			'no_telepon' => $data_guru->no_telepon,
-	// 			'email' => $data_guru->email,
-	// 			'pendidikan_terakhir' => $data_guru->pendidikan_terakhir,
-	// 			'masa_kerja' => $data_guru->masa_kerja,
-	// 			'username' => $data_guru->username,
-	// 			'password' => $data_guru->password,
-	// 			'hak_akses' => $data_guru->hak_akses,
-	// 			'aktif' => $data_guru->aktif,
-	// 			'data_guru' => $data_guru
-	// 	);
-
-	// 	$this->template->load('template/template_guru', 'Guru/form_tambah_guru', $data);
-	// }
-
-	// public function proses_ubah_guru()
-	// {
-	// 	$this->_rulesguru();
-	// 	if($this->form_validation->run() == FALSE) {
-	// 		$id_guru = $this->input->post('id_guru');
-	// 		$this->ubah_guru($id_guru);
-	// 	}else{
-	// 		$id_guru = $this->input->post('id_guru');
-	// 		$data = array(
-	// 			'nama_guru' => $this->input->post('nama_guru'),
-	// 			'nik_guru' => $this->input->post('nik_guru'),
-	// 			'nip_guru' => $this->input->post('nip_guru'),
-	// 			'tempat_lahir' => $this->input->post('tempat_lahir'),
-	// 			'tanggal_lahir' => $this->input->post('tanggal_lahir'),
-	// 			'alamat' => $this->input->post('alamat'),
-	// 			'jk' => $this->input->post('jk'),
-	// 			'foto' => $this->input->post('foto'),
-	// 			'jabatan' => $this->input->post('jabatan'),
-	// 			'no_telepon' => $this->input->post('no_telepon'),
-	// 			'email' => $this->input->post('email'),
-	// 			'pendidikan_terakhir' => $this->input->post('pendidikan_terakhir'),
-	// 			'masa_kerja' => $this->input->post('masa_kerja'),
-	// 			'username' => $this->input->post('username'),
-	// 			'password' => $this->input->post('password'),
-	// 			'hak_akses' => $this->input->post('hak_akses'),
-	// 			'aktif' => $this->input->post('aktif'),
-	// 		);
-
-	// 		$this->Guru_model->update_guru($id_guru, $data);
-	// 		redirect(site_url('Guru/guru_list'));
-	// 	}
-	// }
+		$this->template->load('template/template_guru', 'guru/profil_guru', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
+	}
 
 	//End Guru
 
@@ -206,6 +108,9 @@ class Guru extends CI_Controller {
 		
 
 		$this->template->load('template/template_guru', 'guru/murid_list', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 	//End Murid
 
@@ -223,6 +128,9 @@ class Guru extends CI_Controller {
 		);
 
 		$this->template->load('template/template_guru', 'guru/hafalan_list', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 		public function hapus_hafalan($id_setorhafalan)
@@ -272,6 +180,9 @@ class Guru extends CI_Controller {
 		);
 
 		$this->template->load('template/template_guru', 'Guru/form_tambah_hafalan', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function proses_ubah_hafalan()
@@ -327,6 +238,9 @@ class Guru extends CI_Controller {
 
 
 		$this->template->load('template/template_guru', 'guru/form_tambah_hafalan', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 
@@ -375,6 +289,9 @@ class Guru extends CI_Controller {
 
 
 		$this->template->load('template/template_guru', 'guru/form_pilih_surah', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function hafalan_ayat($id_murid, $id_surah, $id_setorhafalan)
@@ -401,6 +318,9 @@ class Guru extends CI_Controller {
 
 
 		$this->template->load('template/template_guru', 'guru/form_pilih_ayat', $data);
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+	}
 	}
 
 	public function hapus_hafalan_ayat($id_surah, $id_setorhafalan, $id_ayat)

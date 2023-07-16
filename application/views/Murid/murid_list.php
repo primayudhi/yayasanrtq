@@ -46,7 +46,7 @@
             
              <td class="text-nowrap">
                           
-                           <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal_detail<?php echo $row->id_murid; ?>" >Details</button>
+                          <center> <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal_detail<?php echo $row->id_murid; ?>" >Details</button></center>
                         </td>
         </tr>
     <?php } ?>
@@ -116,14 +116,6 @@
                          <tr>
                             <th style="">No Telepon</th>
                             <td><?php echo $murid->no_telepon; ?></td>
-                        </tr>
-                        <tr>
-                            <th style="">Hak Akses</th>
-                            <td><?php echo $murid->hak_akses; ?></td>
-                        </tr>
-                        <tr>
-                            <th style="">Aktif</th>
-                            <td><?php echo $murid->aktif; ?></td>
                         </tr>
                     </tbody>
                 </thead>
