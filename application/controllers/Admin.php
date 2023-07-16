@@ -269,6 +269,7 @@ class Admin extends CI_Controller {
 			$this->ubah_murid($id_murid);
 		}else{
 			$id_murid = $this->input->post('id_murid');
+			$foto = $this->input->post('foto');
 			$data = array(
 				'nama_murid' => $this->input->post('nama_murid'),
 				'id_kelas' => $this->input->post('id_kelas'),
@@ -276,7 +277,6 @@ class Admin extends CI_Controller {
 				'tanggal_lahir' => $this->input->post('tanggal_lahir'),
 				'jk' => $this->input->post('jk'),
 				'alamat' => $this->input->post('alamat'),
-				'foto' => $this->input->post('foto'),
 				'no_telepon' => $this->input->post('no_telepon'),
 				'nama_ibu' => $this->input->post('nama_ibu'),
 				'nama_ayah' => $this->input->post('nama_ayah'),
@@ -287,6 +287,42 @@ class Admin extends CI_Controller {
 				'hak_akses' => $this->input->post('hak_akses'),
 				'aktif' => $this->input->post('aktif'),
 			);
+
+			if ($foto == NULL || $foto == "") {
+				$config['upload_path'] = './uploads/fotomurid/';
+				$config['allowed_types'] = 'jpg|jpeg|png';
+				$config['overwrite'] = true;
+				$filename = 'FotoMurid-'.$id_murid;
+				$config['file_name'] = $filename;
+	
+				// load library upload
+				$this->load->library('upload', $config);
+		
+				$this->upload->initialize($config);
+				
+				if($_FILES['foto']['name'])
+				{
+					if ($this->upload->do_upload('foto'))
+					{
+						$uploadfotomurid = $this->upload->data();
+						$data = array(
+						'namafile' =>$uploadfotomurid['file_name'],
+						'type' =>$uploadfotomurid['file_type']
+						
+						);
+						$fotomurid = $data['namafile'];
+
+						$id_murid = $this->input->post('id_murid');
+		
+						$data = array(
+							'foto' => $fotomurid,
+						);
+			
+						$this->Admin_model->update_murid($id_murid, $data);
+					}
+		
+				}
+			}
 
 			$this->Admin_model->update_murid($id_murid, $data);
 			redirect(site_url('Admin/murid_list'));
@@ -300,6 +336,12 @@ class Admin extends CI_Controller {
 		}
 
 		*/
+	}
+
+	public function resetfotomurid($id_murid)
+	{
+		$this->Admin_model->reset_fotomurid($id_murid);
+		redirect(site_url('Admin/ubah_murid/'.$id_murid));
 	}
 	//End Murid
 
@@ -509,6 +551,7 @@ class Admin extends CI_Controller {
 			$this->ubah_guru($id_guru);
 		}else{
 			$id_guru = $this->input->post('id_guru');
+			$foto = $this->input->post('foto');
 			$data = array(
 				'nama_guru' => $this->input->post('nama_guru'),
 				'nik_guru' => $this->input->post('nik_guru'),
@@ -517,7 +560,6 @@ class Admin extends CI_Controller {
 				'tanggal_lahir' => $this->input->post('tanggal_lahir'),
 				'alamat' => $this->input->post('alamat'),
 				'jk' => $this->input->post('jk'),
-				'foto' => $this->input->post('foto'),
 				'jabatan' => $this->input->post('jabatan'),
 				'no_telepon' => $this->input->post('no_telepon'),
 				'email' => $this->input->post('email'),
@@ -529,9 +571,51 @@ class Admin extends CI_Controller {
 				'aktif' => $this->input->post('aktif'),
 			);
 
+			if ($foto == NULL || $foto == "") {
+				$config['upload_path'] = './uploads/fotoguru/';
+				$config['allowed_types'] = 'jpg|jpeg|png';
+				$config['overwrite'] = true;
+				$filename = 'FotoGuru-'.$id_guru;
+				$config['file_name'] = $filename;
+	
+				// load library upload
+				$this->load->library('upload', $config);
+		
+				$this->upload->initialize($config);
+				
+				if($_FILES['foto']['name'])
+				{
+					if ($this->upload->do_upload('foto'))
+					{
+						$uploadfotoguru = $this->upload->data();
+						$data = array(
+						'namafile' =>$uploadfotoguru['file_name'],
+						'type' =>$uploadfotoguru['file_type']
+						
+						);
+						$fotoguru = $data['namafile'];
+
+						$id_guru = $this->input->post('id_guru');
+		
+						$data = array(
+							'foto' => $fotoguru,
+						);
+			
+						$this->Admin_model->update_guru($id_guru, $data);
+					}
+		
+				}
+			}
+
 			$this->Admin_model->update_guru($id_guru, $data);
 			redirect(site_url('Admin/guru_list'));
 		}
+	}
+
+	public function resetfotoguru($id_guru)
+	{
+		$this->Admin_model->reset_fotoguru($id_guru);
+		redirect(site_url('Admin/ubah_guru/'.$id_guru));
 	}
 	// End Guru
 
@@ -738,13 +822,49 @@ class Admin extends CI_Controller {
 		}else{
 			$id_berita = $this->input->post('id_berita');
 			$isi_slug = $this->input->post('judul');
+			$foto = $this->input->post('foto');
 			$data = array(
 				'tanggal' => $this->input->post('tanggal'),
 				'judul' => $this->input->post('judul'),
-				'foto' => $this->input->post('foto'),
 				'isi' => $this->input->post('isi'),
 				'slug' => slugify($isi_slug),
 			);
+
+			if ($foto == NULL || $foto == "") {
+				$config['upload_path'] = './uploads/fotoberita/';
+				$config['allowed_types'] = 'jpg|jpeg|png';
+				$config['overwrite'] = true;
+				$filename = 'FotoBerita-'.$id_berita;
+				$config['file_name'] = $filename;
+	
+				// load library upload
+				$this->load->library('upload', $config);
+		
+				$this->upload->initialize($config);
+				
+				if($_FILES['foto']['name'])
+				{
+					if ($this->upload->do_upload('foto'))
+					{
+						$uploadfotoberita = $this->upload->data();
+						$data = array(
+						'namafile' =>$uploadfotoberita['file_name'],
+						'type' =>$uploadfotoberita['file_type']
+						
+						);
+						$fotoberita = $data['namafile'];
+
+						$id_berita = $this->input->post('id_berita');
+		
+						$data = array(
+							'foto' => $fotoberita,
+						);
+			
+						$this->Admin_model->update_berita($id_berita, $data);
+					}
+		
+				}
+			}
 
 			$this->Admin_model->update_berita($id_berita, $data);
 			redirect(site_url('Admin/berita_list'));
@@ -759,6 +879,12 @@ class Admin extends CI_Controller {
   	$data = '<p>Ini adalah detail data dengan ID: '.$id.'</p>';
   	echo $data;
 }
+
+public function resetfotoberita($id_berita)
+	{
+		$this->Admin_model->reset_fotoberita($id_berita);
+		redirect(site_url('Admin/ubah_berita/'.$id_berita));
+	}
 
 // End Berita
 

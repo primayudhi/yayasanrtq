@@ -90,6 +90,19 @@ class Admin_model extends CI_Model
         return $this->db->get()->result();
     }
     */
+
+    public function reset_fotomurid($id_murid)
+    {
+      $data = array(
+          'id_murid' => $id_murid,
+          'foto' => NULL
+      );
+      
+          if($this->db->update('data_murid', $data, array('id_murid' => $id_murid)))
+          {
+             return true;  
+          }
+    }
     //end murid
 
     //guru
@@ -127,6 +140,19 @@ class Admin_model extends CI_Model
         $this->db->from('data_guru');
 
         return $this->db->get()->num_rows();
+    }
+
+    public function reset_fotoguru($id_guru)
+    {
+      $data = array(
+          'id_guru' => $id_guru,
+          'foto' => NULL
+      );
+      
+          if($this->db->update('data_guru', $data, array('id_guru' => $id_guru)))
+          {
+             return true;  
+          }
     }
     
 
@@ -178,6 +204,19 @@ class Admin_model extends CI_Model
     {
       $this->db->where('slug', $slug);
       return $this->db->get('data_berita')->row(); 
+    }
+
+    public function reset_fotoberita($id_berita)
+    {
+      $data = array(
+          'id_berita' => $id_berita,
+          'foto' => NULL
+      );
+      
+          if($this->db->update('data_berita', $data, array('id_berita' => $id_berita)))
+          {
+             return true;  
+          }
     }
 
     // Hafalan

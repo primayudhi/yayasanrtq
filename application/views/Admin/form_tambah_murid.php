@@ -161,32 +161,37 @@
                                 </div>
                             </div>
                         </div>
+                        <?php if($foto == NULL || $foto == "") { ?>
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                <label for="foto">Foto</label>
+                                <label for="foto">Foto Murid</label>
 
                             </div>
-
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
-
-                                       <?php if($action == 'ubah_murid'){
-                                            if($row->foto != NULL) { ?>
-                                                <div style="margin-bottom: 5px;">
-                                                    <img src="<?=base_url('./uploads/fotomurid/'.$row->foto)?>" style="width: 80%;">
-                                                </div>
-                                           <?php
-                                            }
-                                        } ?>
-                                        
                                     <div class="form-line">
-
                                         <input type="file" name="foto" class="form-control" value="<?= $foto; ?>">
                                     </div>
-                                    <p style="color: red;">Size Foto Max 2mb
+                                    <p style="color: red;">Size Foto Max 2mb</p>
                                 </div>
                             </div>
                         </div>
+                        <?php } else { ?>
+                            <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                <label for="foto_pemain">Foto Murid</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                    <img src="<?php echo base_url('uploads/fotomurid/'.$foto); ?>" style="height: 90px;border: 1px solid black;" />
+                                    </div>
+                                    <br/>
+                                    <a class="resetfoto" href="<?php echo site_url('Admin/resetfotomurid/'.$id_murid.''); ?>" ><i class="material-icons">clear</i> Reset Foto</a>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                 <label for="username">Username</label>
